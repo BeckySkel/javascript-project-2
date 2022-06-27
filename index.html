@@ -19,7 +19,39 @@
 </head>
 
 <body>
+    <h1>Ultimate RPS</h1>
 
+    <div id="game-board">
+
+        <div class="comp-board">
+            <div id="comp-display" class="display"></div>
+        </div>
+
+
+        <p id="verses">Vs.</p>
+
+        <div class="user-board">
+            <div id ="user-display" class="display"></div>
+
+            <div id="weapon-select">
+                <button weapon-type="rock">Rock</button>
+                <button weapon-type="paper">Paper</button>
+                <button weapon-type="scissors">Scissors</button>
+            </div>
+        </div>
+
+    </div>
+
+    <p id="outcome">To begin, please select either Rock, Paper or Scissors!</p>
+
+    <div id="scoreboard">
+        <div id="score-bar"></div>
+
+        <p>Wins: <span id="wins"></span></p>
+        <p>Losses: <span id="losses"></span></p>
+        <p>Draws: <span id="draws"></span></p>
+        <p>Level: <span id="level"></span></p>
+    </div>
 
     <!-- Link to JavaScript -->
     <script src="script.js"></script>
