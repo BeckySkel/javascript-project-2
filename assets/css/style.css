@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Kdam+Thmor+Pro&family=Roboto+Mono:wght@400;500&display=swap');
+/* Import Google Font - 'Cabin', weight: 400 & 500 */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    text-align: center;
+    background: linear-gradient(135deg, #B8FFDE 0%, #90E0F3 50%, #B8FFDE 100%) no-repeat;
+    background-attachment: fixed;
+    font-family: 'Cabin', sans-serif;
+    color: #3c3c3c;
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    font-size: 6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    padding: 3rem 0;
+    text-shadow:
+        -1px -1px 0 #800080, 1px -1px 0 #800080, -1px 1px 0 #800080, 1px 1px 0 #800080,
+        1px 0px 0px #EFCA08, 0px 1px 0px #EFCA08, 2px 1px 0px #EFCA08, 1px 2px 0px #EFCA08, 3px 2px 0px #EFCA08, 2px 3px 0px #EFCA08, 4px 3px 0px #EFCA08, 3px 4px 0px #EFCA08, 5px 4px 0px #EFCA08,
+        3px 5px 0px #800080, 6px 5px 0px #800080,
+        -1px 2px 0 black, 0 3px 0 #800080, 1px 4px 0 #800080, 2px 5px 0px #800080,
+        2px -1px 0 #800080, 3px 0 0 #800080, 4px 1px 0 #800080, 5px 2px 0px #800080, 6px 3px 0 #800080, 7px 6px 0 #800080,
+        4px 9px 10px #395C6B;
+    color: #B2FF91;
+}
+
+#game-board {
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
+}
+
+.display {
+    border: #3c3c3c solid 2px;
+    border-radius: 5px;
+    background: #FFFBF1;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    font-size: 15rem;
+    color: #3c3c3c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 8px #395C6B;
+}
+
+.display p {
+    font-size: 3rem;
+}
+
+#weapon-select {
+    display: flex;
+    flex: row wrap;
+    justify-content: space-around;
+}
+
+#verses {
+    font-size: 3rem;
+    align-self: center;
+    padding: 3rem;
+}
+
+button {
+    width: 9rem;
+    font-size: 2rem;
+    margin-top: 2rem;
+    border: #3c3c3c solid 2px;
+    border-radius: 20px;
+    font-family: inherit;
+    background: #EFCA08;
+    color: #4F3824;
+    box-shadow: 0px 1px 8px #395C6B,
+        0 -2px 2px #c38b22 inset,
+        0 5px 8px white inset,
+        0 2px 10px 0 #c38b22 inset;
+}
+
+button:hover {
+    box-shadow: 0px 0px 6px #395C6B,
+        0 -1px 1px #c38b22 inset,
+        0 4px 6px white inset,
+        0 2px 10px 0 #c38b22 inset;
+}
+
+button:active {
+    font-size: 1.9rem;
+    box-shadow: 0px 0px 2px #395C6B,
+        0 -3px 6px white inset,
+        0 5px 6px #c38b22 inset,
+        0 2px 10px 0 white inset;
+}
+
+#outcome {
+    font-size: 2rem;
+    padding-top: 3rem;
+}
+
+#score-bar {
+    border: #3c3c3c 2px solid;
+    width: 600px;
+    height: 40px;
+    border-radius: 5px;
+    background: #FFFBF1;
+    margin: 3rem 0 2rem;
+}
+
+#scoreboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    margin: auto;
+}
+
+#scoreboard p {
+    flex-grow: 2;
+    font-size: 2rem;
+}
