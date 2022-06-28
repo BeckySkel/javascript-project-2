@@ -247,6 +247,15 @@ button:active {
         height: 150px;
     }
 
+    button {
+        width: 5rem;
+        font-size: 1.2rem;
+    }
+    
+    button:active {
+        font-size: 1.1rem;
+    }
+
     #outcome {
         font-size: 1rem;
     }

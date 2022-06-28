@@ -1,5 +1,9 @@
-// initialise weapons array
+// main game
 
-// initialise scoring variables
+// record & display score
+
+// display image when hovering over button
+
+// unlock new upgrade at next level?
 
 
