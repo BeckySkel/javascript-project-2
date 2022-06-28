@@ -21,6 +21,7 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     padding: 3rem 0;
+    /* code for 3D effect from https://codepen.io/mandymichael/pen/VprZaq */
     text-shadow:
         -1px -1px 0 #800080, 1px -1px 0 #800080, -1px 1px 0 #800080, 1px 1px 0 #800080,
         1px 0px 0px #EFCA08, 0px 1px 0px #EFCA08, 2px 1px 0px #EFCA08, 1px 2px 0px #EFCA08, 3px 2px 0px #EFCA08, 2px 3px 0px #EFCA08, 4px 3px 0px #EFCA08, 3px 4px 0px #EFCA08, 5px 4px 0px #EFCA08,
@@ -237,7 +238,7 @@ button:active {
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 340px) {
     h1 {
         font-size: 3rem;
     }
