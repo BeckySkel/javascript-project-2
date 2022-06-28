@@ -26,7 +26,7 @@ h1 {
         1px 0px 0px #EFCA08, 0px 1px 0px #EFCA08, 2px 1px 0px #EFCA08, 1px 2px 0px #EFCA08, 3px 2px 0px #EFCA08, 2px 3px 0px #EFCA08, 4px 3px 0px #EFCA08, 3px 4px 0px #EFCA08, 5px 4px 0px #EFCA08,
         3px 5px 0px #800080, 6px 5px 0px #800080,
         -1px 2px 0 black, 0 3px 0 #800080, 1px 4px 0 #800080, 2px 5px 0px #800080,
-        2px -1px 0 #800080, 3px 0 0 #800080, 4px 1px 0 #800080, 5px 2px 0px #800080, 6px 3px 0 #800080, 7px 6px 0 #800080,
+        2px -1px 0 #800080, 3px 0 0 #800080, 4px 1px 0 #800080, 5px 2px 0px #800080, 6px 3px 0 #800080, 6px 5px 0 #800080,
         4px 9px 10px #395C6B;
     color: #B2FF91;
 }
@@ -37,13 +37,16 @@ h1 {
     flex-flow: row nowrap;
 }
 
-.display {
+.box {
     border: #3c3c3c solid 2px;
     border-radius: 5px;
     background: #FFFBF1;
+}
+
+.display {
     width: 400px;
     height: 400px;
-    margin: auto;
+    /* margin: auto; */
     font-size: 15rem;
     color: #3c3c3c;
     display: flex;
@@ -62,7 +65,7 @@ h1 {
     justify-content: space-around;
 }
 
-#verses {
+#versus {
     font-size: 3rem;
     align-self: center;
     padding: 3rem;
@@ -100,23 +103,22 @@ button:active {
 
 #outcome {
     font-size: 2rem;
-    padding-top: 3rem;
+    padding: 3rem 1rem 0;
 }
 
-#score-bar {
-    border: #3c3c3c 2px solid;
-    width: 600px;
-    height: 40px;
-    border-radius: 5px;
-    background: #FFFBF1;
-    margin: 3rem 0 2rem;
-}
 
 #scoreboard {
+    width: 600px;
     display: flex;
     flex-wrap: wrap;
     width: 600px;
     margin: auto;
+}
+
+#score-bar {
+    width: inherit;
+    height: 40px;
+    margin: 3rem 0 2rem;
 }
 
 #scoreboard p {
@@ -125,3 +127,130 @@ button:active {
 }
 
 
+/* Media Queries */
+
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 4rem;
+        padding: 2rem 0;
+    }
+    
+    .display {
+        width: 300px;
+        height: 300px;
+    }
+    
+    #versus {
+        font-size: 2rem;
+        padding: 2rem;
+    }
+    
+    button {
+        width: 7rem;
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    button:active {
+        font-size: 1.4rem;
+    }
+    
+    #outcome {
+        font-size: 1.5rem;
+        padding-top: 2rem;
+    }
+        
+    #scoreboard {
+        width: 500px;
+    }
+
+    #score-bar {
+        height: 30px;
+        margin: 2rem 0 1.5rem;
+    }
+    
+    #scoreboard p {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        border: #3c3c3c solid 1.5px;
+    }
+    
+    .display {
+        width: 250px;
+        height: 250px;
+    }
+
+    #versus {
+        padding: 1rem; 
+    }
+    
+    button {
+        border: #3c3c3c solid 1.5px;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 3.5rem;
+        padding: 1rem 0;
+    }
+
+    #game-board {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .display {
+        width: 200px;
+        height: 200px;
+    }
+
+    #versus {
+        font-size: 1.5rem;
+        padding: 0.5rem; 
+    }
+
+    #user-display {
+        margin: auto;
+    }
+    
+    #outcome {
+        padding-top: 1rem;
+    }
+    
+    #scoreboard {
+        width: 300px;
+    }
+    
+    #score-bar {
+        height: 20px;
+        margin: 1rem 0 0.5rem;
+    }
+
+    #scoreboard p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 305px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    #comp-display {
+        width: 150px;
+        height: 150px;
+    }
+
+    #outcome {
+        font-size: 1rem;
+    }
+
+    #scoreboard {
+        width: 250px;
+    }
+}
