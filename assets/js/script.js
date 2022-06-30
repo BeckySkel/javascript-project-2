@@ -1,7 +1,7 @@
 // welcome message?
 
 // -- main game
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {  
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
@@ -66,12 +66,15 @@ function battle(weapon) {
     displayScores(outcome);
 }
 
+
 // record & display score
 function displayScores(outcome) {
     let wins = Number(document.getElementById('wins').innerHTML);
     let loses = Number(document.getElementById('loses').innerHTML);
     let draws = Number(document.getElementById('draws').innerHTML);
-    let points = Number(document.getElementById('score-bar').innerHTML);
+    let scoreBar = document.getElementById('score-bar').offsetWidth;
+    let progress = scoreBar / 3;
+    let points = document.getElementById('progress-bar').offsetWidth / Number(progress);
 
     if (outcome === 'win') {
         ++wins;
@@ -86,10 +89,33 @@ function displayScores(outcome) {
     document.getElementById('wins').innerHTML = wins;
     document.getElementById('loses').innerHTML = loses;
     document.getElementById('draws').innerHTML = draws;
-    document.getElementById('score-bar').innerHTML = points;
+
+    if (points <= 0) {
+        incrementScoreBar(0);
+    } else {
+        incrementScoreBar(points);
+    }
 }
 
-// incrememnt score-bar and load next level?
+
+// incrememnt score-bar
+function incrementScoreBar(points) {
+    let scoreBar = document.getElementById('score-bar').offsetWidth;
+    let progress = scoreBar / 3;
+
+    let progressBar = document.getElementById('progress-bar');
+    let calculatedWidth = Number(progress) * Number(points);
+    progressBar.style.width = `${calculatedWidth}px`;
+
+    
+}
+
+// calculate level
+
+// if (progressBar.offsetWidth === scoreBar) {
+//     alert("congratulations! you've made it to level 2!");
+//     progressBar.style.width = 0;
+// }
 
 // display image when hovering over button
 

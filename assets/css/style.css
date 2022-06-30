@@ -42,6 +42,7 @@ h1 {
     border: #3c3c3c solid 2px;
     border-radius: 5px;
     background: #FFFBF1;
+    box-shadow: 0px 1px 8px #395C6B;
 }
 
 .display {
@@ -53,7 +54,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 1px 8px #395C6B;
 }
 
 .display p {
@@ -120,6 +120,12 @@ button:active {
     width: inherit;
     height: 40px;
     margin: 3rem 0 2rem;
+}
+
+#progress-bar {
+    height: calc(100% - 1px);
+    width: 0px;
+    background: #B2FF91;
 }
 
 #scoreboard p {
