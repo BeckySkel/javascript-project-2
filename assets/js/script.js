@@ -61,9 +61,35 @@ function battle(weapon) {
         outcome = 'Draw'
         outcomeText.innerHTML = `${outcome}!`;
     }
+
+    // -- calculate and display scores
+    displayScores(outcome);
 }
 
 // record & display score
+function displayScores(outcome) {
+    let wins = Number(document.getElementById('wins').innerHTML);
+    let loses = Number(document.getElementById('loses').innerHTML);
+    let draws = Number(document.getElementById('draws').innerHTML);
+    let points = Number(document.getElementById('score-bar').innerHTML);
+
+    if (outcome === 'win') {
+        ++wins;
+        ++points;
+    } else if (outcome === 'lose') {
+        ++loses;
+        --points;
+    } else {
+        ++draws
+    }
+
+    document.getElementById('wins').innerHTML = wins;
+    document.getElementById('loses').innerHTML = loses;
+    document.getElementById('draws').innerHTML = draws;
+    document.getElementById('score-bar').innerHTML = points;
+}
+
+// incrememnt score-bar and load next level?
 
 // display image when hovering over button
 
