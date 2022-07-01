@@ -72,8 +72,11 @@ function displayScores(outcome) {
     let wins = Number(document.getElementById('wins').innerHTML);
     let loses = Number(document.getElementById('loses').innerHTML);
     let draws = Number(document.getElementById('draws').innerHTML);
-    let scoreBar = document.getElementById('score-bar').offsetWidth;
-    let progress = scoreBar / 3;
+
+    let level = Number(document.getElementById('level').innerHTML);
+    let requiredWins = Number(level) + 2;
+    let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
+    let progress = scoreBarWidth / requiredWins;
     let points = document.getElementById('progress-bar').offsetWidth / Number(progress);
 
     if (outcome === 'win') {
@@ -98,27 +101,40 @@ function displayScores(outcome) {
 }
 
 
-// incrememnt score-bar
+// incrememnt score-bar & next level
 function incrementScoreBar(points) {
-    let scoreBar = document.getElementById('score-bar').offsetWidth;
-    let progress = scoreBar / 3;
+    let level = Number(document.getElementById('level').innerHTML);
+    let requiredWins = Number(level) + 2;
+    let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
+    let progress = scoreBarWidth / requiredWins;
 
     let progressBar = document.getElementById('progress-bar');
     let calculatedWidth = Number(progress) * Number(points);
     progressBar.style.width = `${calculatedWidth}px`;
 
-    
+    if (progressBar.offsetWidth === scoreBarWidth) {
+        setTimeout(function() {
+            ++level;
+            alert(`congratulations! you've made it to level ${level}!`);
+            document.getElementById('level').innerHTML = level;
+            progressBar.style.width = 0;
+        }, 500);
+        
+    }
 }
 
-// calculate level
 
-// if (progressBar.offsetWidth === scoreBar) {
-//     alert("congratulations! you've made it to level 2!");
-//     progressBar.style.width = 0;
+// calculate level
+// function calculateLevel(points) {
+//     level = 1;
+//     return level;
 // }
 
-// display image when hovering over button
+
+
 
 // unlock new upgrade at next level?
 
-// theme selector?
+// display image when hovering over button
+
+// theme/upgrade selector?
