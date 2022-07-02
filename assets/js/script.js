@@ -1,7 +1,5 @@
-// welcome message?
-
 // -- main game
-document.addEventListener("DOMContentLoaded", function () {  
+document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
@@ -10,8 +8,67 @@ document.addEventListener("DOMContentLoaded", function () {
             battle(weapon);
         });
     }
+
+    setTimeout(displayMessage('welcome'), 1000);
 });
 
+// welcome message with instructions and game settings?
+function displayMessage(messageType) {
+    // -- disable buttons
+    let weapons = document.getElementById("weapon-select");
+
+    for (let i = 0; i < weapons.children.length; i++) {
+        weapons.children[i].disabled = true;
+    }
+
+    //  -- create and display message container
+    let messageContainer = document.createElement('div');
+    messageContainer.id = 'message-container';
+    messageContainer.style.top = '35%';
+    messageContainer.style.animation = 'slide-in 1s ease-out';
+
+    let body = document.getElementsByTagName('body')[0];
+    body.appendChild(messageContainer);
+
+    // -- display message (welcome or level up)
+    if (messageType === 'welcome') {
+        messageContainer.innerHTML = `
+        <h2>Welcome!</h2>
+        <p>Ultimate RPS is a game of Rock, Paper, Scissors.. with a twist!
+        Level up as you battle the computer and win fun upgrades along your way to victory!
+        </p>
+        <div id="message-buttons">
+        <button id="settings">Settings</button>
+        <button>Begin!</button>
+        </div>
+        `;
+    } else if (messageType === 'winner') {
+        messageContainer.innerHTML = `
+        <h2>Congratulations!</h2>
+        <p>You've reached level 5 and completed the game! Click below if you'd like to restart:</p>
+        <button></button>
+        `;
+    } else {
+        messageContainer.innerHTML = `
+        <h2>Congratulations!</h2>
+        <p>You've reached level ${messageType}. Choose an upgrade to continue:</p>
+        <button></button>
+        <button></button>
+        <button></button>
+        `;
+    }
+
+    let settings = document.getElementById('settings');
+    settings.addEventListener("click", function() {
+        messageContainer.style.top = '100%';
+        messageContainer.style.animation = 'slide-out 1s linear';
+        for (let i = 0; i < weapons.children.length; i++) {
+            weapons.children[i].disabled = false;
+        }
+    });
+}
+
+// -- main game
 function battle(weapon) {
     let weapons = [{
             value: 'rock',
@@ -113,28 +170,24 @@ function incrementScoreBar(points) {
     progressBar.style.width = `${calculatedWidth}px`;
 
     if (progressBar.offsetWidth === scoreBarWidth) {
-        setTimeout(function() {
+        setTimeout(function () {
             ++level;
-            alert(`congratulations! you've made it to level ${level}!`);
+            level === 5 ? displayMessage('winner') : displayMessage(level);
             document.getElementById('level').innerHTML = level;
             progressBar.style.width = 0;
         }, 500);
-        
+
     }
 }
 
-
-// calculate level
-// function calculateLevel(points) {
-//     level = 1;
-//     return level;
-// }
+// display image when hovering over button
 
 
 
+
+
+// warning on leaving that progress will be lost
 
 // unlock new upgrade at next level?
-
-// display image when hovering over button
 
 // theme/upgrade selector?
