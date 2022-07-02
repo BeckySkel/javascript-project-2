@@ -154,10 +154,9 @@ button:disabled:hover {
 #message-container {
     height: 30%;
     position: absolute;
-    /* top: 100%; */
     width: 100%;
     background: #B8FFDE;
-    border: solid #90E0F3 10px;
+    border-bottom: solid #90E0F3 10px;
     border-top: solid #90E0F3 10px;
     font-size: 2rem;
     box-shadow: 0px 2px 20px #3c3c3c;
@@ -165,10 +164,6 @@ button:disabled:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* animation: 
-    slide-in
-    1s
-    ease-out */
 }
 
 #message-container > * {
@@ -209,10 +204,10 @@ button:disabled:hover {
     0% {
         top: 35%;
     }
-    15% {
+    20% {
         top: calc(35% + 5px);
     }
-    60% {
+    40% {
         top: calc(35% - 10px);
     }
     100% {

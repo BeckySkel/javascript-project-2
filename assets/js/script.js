@@ -1,4 +1,4 @@
-// -- main game
+// Function to wait for DOM to load then get button elements and add event listeners taken from the CI Love Maths Essentials Project
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByTagName("button");
 
@@ -12,9 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(displayMessage('welcome'), 1000);
 });
 
-// welcome message with instructions and game settings?
+/**
+ * A pop-up message display that welcomes the user, rewards them for leveling-up, or praises them for completing the game
+ * temperarily disables game buttons when displayed
+ * disappears when button clicked
+ */
 function displayMessage(messageType) {
-    // -- disable buttons
+    // -- disable game buttons
     let weapons = document.getElementById("weapon-select");
 
     for (let i = 0; i < weapons.children.length; i++) {
@@ -30,7 +34,7 @@ function displayMessage(messageType) {
     let body = document.getElementsByTagName('body')[0];
     body.appendChild(messageContainer);
 
-    // -- display message (welcome or level up)
+    // -- add message HTML (welcome, winner or level up)
     if (messageType === 'welcome') {
         messageContainer.innerHTML = `
         <h2>Welcome!</h2>
@@ -38,34 +42,53 @@ function displayMessage(messageType) {
         Level up as you battle the computer and win fun upgrades along your way to victory!
         </p>
         <div id="message-buttons">
-        <button id="settings">Settings</button>
         <button>Begin!</button>
         </div>
         `;
     } else if (messageType === 'winner') {
         messageContainer.innerHTML = `
         <h2>Congratulations!</h2>
-        <p>You've reached level 5 and completed the game! Click below if you'd like to restart:</p>
-        <button></button>
+        <p>You've reached beat level 5 and completed the game! Click below if you'd like to restart:</p>
+        <div id="message-buttons">
+        <button id="restart">Restart!</button>
+        </div>
+        <p>The game will be restared and all progress will be lost</p>
         `;
     } else {
         messageContainer.innerHTML = `
         <h2>Congratulations!</h2>
         <p>You've reached level ${messageType}. Choose an upgrade to continue:</p>
-        <button></button>
-        <button></button>
-        <button></button>
+        <div id="message-buttons">
+        <button>Option 1</button>
+        <button>Option 2</button>
+        <button>Option 3</button>
+        </div>
         `;
     }
 
-    let settings = document.getElementById('settings');
-    settings.addEventListener("click", function() {
-        messageContainer.style.top = '100%';
-        messageContainer.style.animation = 'slide-out 1s linear';
-        for (let i = 0; i < weapons.children.length; i++) {
-            weapons.children[i].disabled = false;
+    // -- remove message and take action when option selected
+    let messageButtons = document.getElementById("message-buttons");
+
+    for (let i = 0; i < messageButtons.children.length; i++) {
+        if (messageButtons.children[i].id === 'restart') {
+            messageButtons.children[i].addEventListener("click", function () {
+                alert('Page reloading');
+                document.location.reload(true);
+            })
+        } else {
+            messageButtons.children[i].addEventListener("click", function () {
+                messageContainer.style.top = '100%';
+                messageContainer.style.animation = 'slide-out 0.8s linear';
+                setTimeout(function () {
+                    messageContainer.remove()
+                }, 800);
+                for (let i = 0; i < weapons.children.length; i++) {
+                    weapons.children[i].disabled = false;
+                }
+
+            })
         }
-    });
+    }
 }
 
 // -- main game
@@ -172,7 +195,7 @@ function incrementScoreBar(points) {
     if (progressBar.offsetWidth === scoreBarWidth) {
         setTimeout(function () {
             ++level;
-            level === 5 ? displayMessage('winner') : displayMessage(level);
+            level === 6 ? displayMessage('winner') : displayMessage(level);
             document.getElementById('level').innerHTML = level;
             progressBar.style.width = 0;
         }, 500);
