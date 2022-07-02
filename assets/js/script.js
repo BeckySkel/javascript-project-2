@@ -1,9 +1,9 @@
 // Function to wait for DOM to load then get button elements and add event listeners taken from the CI Love Maths Essentials Project
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function () {
+        button.addEventListener('click', function () {
             let weapon = this.getAttribute("weapon-type");
             battle(weapon);
         });
@@ -91,8 +91,12 @@ function displayMessage(messageType) {
     }
 }
 
-// -- main game
+/**
+ * The main game function, called when the player selects a weapon
+ * creates a random answer for the computer and battles it against the player's choice
+ */
 function battle(weapon) {
+    // -- initialise weapons in objects array
     let weapons = [{
             value: 'rock',
             wins: ['scissors', 'lizard'],
@@ -128,7 +132,7 @@ function battle(weapon) {
     });
     userDisplay.innerHTML = weapons[weaponIndex].icon;
 
-    // -- display outcome 
+    // -- compare responses and display outcome
     let outcomeText = document.getElementById('outcome');
     let outcome;
     if (weapon === compResponse.loses[0] || weapon === compResponse.loses[1]) {
@@ -142,23 +146,28 @@ function battle(weapon) {
         outcomeText.innerHTML = `${outcome}!`;
     }
 
-    // -- calculate and display scores
     displayScores(outcome);
 }
 
 
-// record & display score
+/**
+ * Runs after player selects a weapon and the outcome is decided
+ * calculates and displays scores based on outcome
+ */
 function displayScores(outcome) {
+    // -- retrieve current scores
     let wins = Number(document.getElementById('wins').innerHTML);
     let loses = Number(document.getElementById('loses').innerHTML);
     let draws = Number(document.getElementById('draws').innerHTML);
 
+    // -- calculate points needed to progress to next level
     let level = Number(document.getElementById('level').innerHTML);
     let requiredWins = Number(level) + 2;
     let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
     let progress = scoreBarWidth / requiredWins;
     let points = document.getElementById('progress-bar').offsetWidth / Number(progress);
 
+    // -- increment scores
     if (outcome === 'win') {
         ++wins;
         ++points;
@@ -166,9 +175,10 @@ function displayScores(outcome) {
         ++loses;
         --points;
     } else {
-        ++draws
+        ++draws;
     }
 
+    // -- display scores
     document.getElementById('wins').innerHTML = wins;
     document.getElementById('loses').innerHTML = loses;
     document.getElementById('draws').innerHTML = draws;
@@ -203,11 +213,9 @@ function incrementScoreBar(points) {
     }
 }
 
+
+
 // display image when hovering over button
-
-
-
-
 
 // warning on leaving that progress will be lost
 
