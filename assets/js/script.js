@@ -73,11 +73,12 @@ function displayMessage(messageType) {
         <h2>Congratulations!</h2>
         <p>You've reached level ${messageType}. Choose an upgrade to continue:</p>
         <div id="message-buttons">
-        <button>Option 1</button>
-        <button>Option 2</button>
-        <button>Option 3</button>
+        <button class="upgrade-option">Option 1</button>
+        <button class="upgrade-option">Option 2</button>
+        <button class="upgrade-option">Option 3</button>
         </div>
         `;
+        unlockUpgrade();
     }
 
     // -- remove message and take action when option selected
@@ -259,14 +260,26 @@ function incrementScoreBar(points) {
     }
 }
 
-
-
-// display image when hovering over button
-
 // play audio clip on winning/losing battle
 
 // unlock new upgrade at next level?
 
 // theme/upgrade selector?
+function unlockUpgrade() {
+    let upgrades = ['lizard & spock', 'real images', 'pink theme', 'retro images'];
+
+    let upgradeOption = document.getElementsByClassName('upgrade-option');
+
+    for (let i = 0; i < 3; i++) {
+        let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
+        upgradeOption[i].innerHTML = upgrade;
+
+        for (let i = 0; i < upgrades.length; i++) {
+            if (upgrades[i] === upgrade) {
+                upgrades.splice(i, 1);
+            }
+        }
+    }
+}
 
 // settings?
