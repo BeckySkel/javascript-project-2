@@ -266,16 +266,47 @@ function incrementScoreBar(points) {
 
 // theme/upgrade selector?
 function unlockUpgrade() {
-    let upgrades = ['lizard & spock', 'real images', 'pink theme', 'retro images'];
+    let upgrades = [{
+            name:'Lizard & Spock',
+            image: `
+            <div class="upgrade-display">
+            <i class="fa-solid fa-hand-lizard"></i>
+            <i class="fa-solid fa-hand-spock"></i>
+            </div>
+            `
+        },
+        {
+            name: 'Purple Theme',
+            image: `
+            <div class="upgrade-display" style="background: linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat;">
+
+            </div>
+            `
+        },
+        {
+            name: 'Pink Theme',
+            image: `
+            <div class="upgrade-display" style="background: linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;">
+            </div>
+            `
+        },
+        {
+            name: 'Dark Theme',
+            image: `
+            <div class="upgrade-display" style="background: linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;">
+            </div>
+            `
+        }
+    ];
 
     let upgradeOption = document.getElementsByClassName('upgrade-option');
 
     for (let i = 0; i < 3; i++) {
         let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
-        upgradeOption[i].innerHTML = upgrade;
+        upgradeOption[i].innerHTML = upgrade.name + upgrade.image;
 
         for (let i = 0; i < upgrades.length; i++) {
-            if (upgrades[i] === upgrade) {
+            if (upgrades[i].name === upgrade.name) {
                 upgrades.splice(i, 1);
             }
         }

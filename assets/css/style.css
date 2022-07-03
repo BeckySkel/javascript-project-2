@@ -9,6 +9,9 @@
 body {
     text-align: center;
     background: linear-gradient(135deg, #B8FFDE 0%, #90E0F3 50%, #B8FFDE 100%) no-repeat;
+    /* background: linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat; */
+    /* background: linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat; */
+    /* background: linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat; */
     background-attachment: fixed;
     font-family: 'Cabin', sans-serif;
     color: #3c3c3c;
@@ -50,7 +53,7 @@ h1 {
     height: 400px;
     /* margin: auto; */
     font-size: 15rem;
-    /* color: #3c3c3c; */
+    color: #3c3c3c;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -177,6 +180,33 @@ button:disabled:hover {
 
 #message-buttons button {
     margin: 0 20px;
+}
+
+.upgrade-option {
+    width: 11rem;
+    font-size: 1.5rem;
+    height: 11rem;
+}
+
+.upgrade-option:active {
+    font-size: 1.4rem;
+}
+
+.upgrade-display {
+    border: solid #3c3c3c 2px;
+    width: 9rem;
+    height: 6.5rem;
+    background: #FFFBF1;
+    margin: 0.5rem auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.upgrade-option:active .upgrade-display {
+    width: 8.6rem;
+    height: 6.3rem;
 }
 
 @keyframes slide-in {
