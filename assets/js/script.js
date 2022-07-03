@@ -260,11 +260,7 @@ function incrementScoreBar(points) {
     }
 }
 
-// play audio clip on winning/losing battle
-
 // unlock new upgrade at next level?
-
-// theme/upgrade selector?
 function unlockUpgrade() {
     let upgrades = [{
             name:'Lizard & Spock',
@@ -314,3 +310,7 @@ function unlockUpgrade() {
 }
 
 // settings?
+
+// theme/upgrade selector?
+
+// play audio clip on winning/losing battle

@@ -202,11 +202,18 @@ button:disabled:hover {
     border-top-right-radius: 5px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    font-size: 3.5rem;
+}
+
+.upgrade-display i {
+    padding-top: 1.5rem;
+    color: #3c3c3c;
 }
 
 .upgrade-option:active .upgrade-display {
     width: 8.6rem;
     height: 6.3rem;
+    font-size: 3.4rem;
 }
 
 @keyframes slide-in {
