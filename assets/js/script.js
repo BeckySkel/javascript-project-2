@@ -1,5 +1,6 @@
 // Function to wait for DOM to load then get button elements and add event listeners taken from the CI Love Maths Essentials Project
 document.addEventListener('DOMContentLoaded', function () {
+    // -- add event listeners to buttons to start game
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
@@ -9,7 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // -- display welcome message
     setTimeout(displayMessage('welcome'), 1000);
+
+    // -- warn user that all progress will be lost on reload/exit
+    window.onbeforeunload = function() {
+        return "Are you sure you want to leave? All progress will be lost!";
+    }
 });
 
 /**
@@ -82,10 +89,10 @@ function displayMessage(messageType) {
                 setTimeout(function () {
                     messageContainer.remove()
                 }, 800);
+
                 for (let i = 0; i < weapons.children.length; i++) {
                     weapons.children[i].disabled = false;
                 }
-
             })
         }
     }
@@ -202,7 +209,7 @@ function incrementScoreBar(points) {
     let calculatedWidth = Number(progress) * Number(points);
     progressBar.style.width = `${calculatedWidth}px`;
 
-    if (progressBar.offsetWidth === scoreBarWidth) {
+    if (progressBar.offsetWidth === scoreBarWidth || progressBar.offsetWidth >= scoreBarWidth) {
         setTimeout(function () {
             ++level;
             level === 6 ? displayMessage('winner') : displayMessage(level);
@@ -213,12 +220,15 @@ function incrementScoreBar(points) {
     }
 }
 
-
-
 // display image when hovering over button
 
+// play audio clip on winning/losing battle
+
 // warning on leaving that progress will be lost
+
 
 // unlock new upgrade at next level?
 
 // theme/upgrade selector?
+
+// settings?
