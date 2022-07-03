@@ -98,6 +98,10 @@ function displayMessage(messageType) {
                     messageContainer.remove()
                 }, 800);
 
+                if (messageButtons.children[i].classList[0] === 'upgrade-option') {
+                    activateUpgrade(messageButtons.children[i].classList[1], );
+                }
+
                 for (let i = 0; i < weapons.children.length; i++) {
                     weapons.children[i].disabled = false;
                 }
@@ -106,13 +110,63 @@ function displayMessage(messageType) {
     }
 }
 
+
+
+
+
+function activateUpgrade(upgradeType, upgradeAction) {
+    if (upgradeType === 'theme-upgrade') {
+        document.body.style.background = upgradeAction;
+    } else if (upgradeType === 'game-upgrade') {
+        let weaponSelect = document.getElementById('weapon-select');
+
+        let lizardButton = document.createElement('button');
+        lizardButton.setAttribute('weapon-type', 'lizard');
+        lizardButton.innerHTML = 'Lizard';
+        lizardButton.addEventListener('click', function() {
+            let weapon = this.getAttribute("weapon-type");
+            battle(weapon);
+        });
+        lizardButton.addEventListener('mouseenter', function () {
+            let weapon = this.getAttribute("weapon-type");
+            preview(weapon);
+        });
+        lizardButton.addEventListener('mouseleave', function () {
+            stopPreview();
+        });
+
+        let spockButton = document.createElement('button');
+        spockButton.setAttribute('weapon-type', 'spock');
+        spockButton.innerHTML = 'Spock';
+        spockButton.addEventListener('click', function() {
+            let weapon = this.getAttribute("weapon-type");
+            battle(weapon);
+        });
+        spockButton.addEventListener('mouseenter', function () {
+            let weapon = this.getAttribute("weapon-type");
+            preview(weapon);
+        });
+        spockButton.addEventListener('mouseleave', function () {
+            stopPreview();
+        });
+
+        weaponSelect.appendChild(lizardButton);
+        weaponSelect.appendChild(spockButton);
+    }
+}
+
+
+
+
+
+
 /**
  * Creates and stores an array of objects to be used as weapons in the game functions
  * returns the full array
  */
 function weaponChoices() {
-    // -- initialise weapons in objects array
-    let weapons = [{
+    // -- initialise core weapons in objects array
+    let coreWeapons = [{
             value: 'rock',
             wins: ['scissors', 'lizard'],
             loses: ['paper', 'spock'],
@@ -130,9 +184,36 @@ function weaponChoices() {
             loses: ['rock', 'spock'],
             icon: `<i class="fa-solid fa-hand-scissors"></i>`
         }
-        // lizard loses rock and scissors, beats paper and spock
-        // spock loses to lizard and paper, beats rock and scissors
     ]
+
+    // -- initialise additional weapons in objects array
+    let additionalWeapons = [{
+            value: 'lizard',
+            wins: ['paper', 'spock'],
+            loses: ['scissors', 'rock'],
+            icon: `<i class="fa-solid fa-hand-lizard"></i>`
+        },
+        {
+            value: 'spock',
+            wins: ['scissors', 'rock'],
+            loses: ['paper', 'lizard'],
+            icon: `<i class="fa-solid fa-hand-spock"></i>`
+        }
+    ]
+
+    let weapons;
+    
+    // -- if all buttons present, combine weapon arrays
+    let allWeaponsUnlocked = document.getElementById('weapon-select').children.length;
+    console.log(allWeaponsUnlocked);
+    if (Number(allWeaponsUnlocked) === 5) {
+        weapons = [].concat(coreWeapons, additionalWeapons);
+        // console.log(weapons);
+    } else {
+        weapons = coreWeapons;
+        // console.log(weapons);
+    }
+
     return weapons;
 }
 
@@ -263,35 +344,47 @@ function incrementScoreBar(points) {
 // unlock new upgrade at next level?
 function unlockUpgrade() {
     let upgrades = [{
-            name:'Lizard & Spock',
+            name: 'Lizard & Spock',
+            identifier: 'lizard-spock',
+            type: 'game-upgrade',
             image: `
             <div class="upgrade-display">
             <i class="fa-solid fa-hand-lizard"></i>
             <i class="fa-solid fa-hand-spock"></i>
             </div>
-            `
+            `,
+            action: ''
         },
         {
             name: 'Purple Theme',
+            identifier: 'purple-theme',
+            type: 'theme-upgrade',
             image: `
             <div class="upgrade-display" style="background: linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat;">
 
             </div>
-            `
+            `,
+            action: `linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat;`
         },
         {
             name: 'Pink Theme',
+            identifier: 'pink-theme',
+            type: 'theme-upgrade',
             image: `
             <div class="upgrade-display" style="background: linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;">
             </div>
-            `
+            `,
+            action: `linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;`
         },
         {
             name: 'Dark Theme',
+            identifier: 'dark-theme',
+            type: 'theme-upgrade',
             image: `
             <div class="upgrade-display" style="background: linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;">
             </div>
-            `
+            `,
+            action: `linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;`
         }
     ];
 
@@ -300,6 +393,8 @@ function unlockUpgrade() {
     for (let i = 0; i < 3; i++) {
         let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
         upgradeOption[i].innerHTML = upgrade.name + upgrade.image;
+        upgradeOption[i].id = upgrade.identifier;
+        upgradeOption[i].classList.add(upgrade.type);
 
         for (let i = 0; i < upgrades.length; i++) {
             if (upgrades[i].name === upgrade.name) {
@@ -309,8 +404,6 @@ function unlockUpgrade() {
     }
 }
 
-// settings?
-
-// theme/upgrade selector?
+// settings and upgrade enable/disable 
 
 // play audio clip on winning/losing battle
