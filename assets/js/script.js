@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
+        button.addEventListener('mouseenter', function () {
+            let weapon = this.getAttribute("weapon-type");
+            preview(weapon);
+        });
+        button.addEventListener('mouseleave', function () {
+            stopPreview();
+        });
         button.addEventListener('click', function () {
             let weapon = this.getAttribute("weapon-type");
             battle(weapon);
@@ -14,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(displayMessage('welcome'), 1000);
 
     // -- warn user that all progress will be lost on reload/exit
-    window.onbeforeunload = function() {
+    window.onbeforeunload = function () {
         return "Are you sure you want to leave? All progress will be lost!";
     }
 });
@@ -99,10 +106,10 @@ function displayMessage(messageType) {
 }
 
 /**
- * The main game function, called when the player selects a weapon
- * creates a random answer for the computer and battles it against the player's choice
+ * Creates and stores an array of objects to be used as weapons in the game functions
+ * returns the full array
  */
-function battle(weapon) {
+function weaponChoices() {
     // -- initialise weapons in objects array
     let weapons = [{
             value: 'rock',
@@ -125,6 +132,18 @@ function battle(weapon) {
         // lizard loses rock and scissors, beats paper and spock
         // spock loses to lizard and paper, beats rock and scissors
     ]
+    return weapons;
+}
+
+
+
+/**
+ * The main game function, called when the player selects a weapon
+ * creates a random answer for the computer and battles it against the player's choice
+ */
+function battle(weapon) {
+    // -- retrieve weapons from objects array
+    let weapons = weaponChoices();
 
     // -- display computer's choice
     let compResponse = weapons[Math.floor(Math.random() * weapons.length)];
@@ -138,6 +157,7 @@ function battle(weapon) {
         return object.value === weapon;
     });
     userDisplay.innerHTML = weapons[weaponIndex].icon;
+    userDisplay.style.color = '#3c3c3c';
 
     // -- compare responses and display outcome
     let outcomeText = document.getElementById('outcome');
@@ -156,6 +176,25 @@ function battle(weapon) {
     displayScores(outcome);
 }
 
+function preview(weapon) {
+    let weapons = weaponChoices();
+
+    let userDisplay = document.getElementById('user-display');
+    // userDisplay.innerHTML = weapons
+    userDisplay.style.color = '#d3d3d3';
+    let weaponIndex = weapons.findIndex(object => {
+        return object.value === weapon;
+    });
+    userDisplay.innerHTML = `<span id="preview">${weapons[weaponIndex].icon}</span>`;
+}
+
+
+function stopPreview() {
+    let previewDisplay = document.getElementById('preview');
+    if (previewDisplay !== null) {
+        previewDisplay.remove();
+    }
+}
 
 /**
  * Runs after player selects a weapon and the outcome is decided
@@ -220,12 +259,11 @@ function incrementScoreBar(points) {
     }
 }
 
+
+
 // display image when hovering over button
 
 // play audio clip on winning/losing battle
-
-// warning on leaving that progress will be lost
-
 
 // unlock new upgrade at next level?
 
