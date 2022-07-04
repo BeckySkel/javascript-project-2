@@ -99,7 +99,7 @@ function displayMessage(messageType) {
                 }, 800);
 
                 if (messageButtons.children[i].classList[0] === 'upgrade-option') {
-                    activateUpgrade(messageButtons.children[i].classList[1], );
+                    activateUpgrade(messageButtons.children[i].classList[1], 'PLACEHOLDER - add action from upgrades list');
                 }
 
                 for (let i = 0; i < weapons.children.length; i++) {
@@ -407,6 +407,8 @@ function unlockUpgrade() {
         }
     }
 }
+
+// disable upgrade once selected and unlock in settings
 
 // settings and upgrade enable/disable 
 
