@@ -120,9 +120,11 @@ function activateUpgrade(upgradeType, upgradeAction) {
     } else if (upgradeType === 'game-upgrade') {
         let weaponSelect = document.getElementById('weapon-select');
 
+        if (weaponSelect.children.length === 3) {
         let lizardButton = document.createElement('button');
         lizardButton.setAttribute('weapon-type', 'lizard');
         lizardButton.innerHTML = 'Lizard';
+        lizardButton.style.marginLeft = '2rem';
         lizardButton.addEventListener('click', function() {
             let weapon = this.getAttribute("weapon-type");
             battle(weapon);
@@ -138,6 +140,7 @@ function activateUpgrade(upgradeType, upgradeAction) {
         let spockButton = document.createElement('button');
         spockButton.setAttribute('weapon-type', 'spock');
         spockButton.innerHTML = 'Spock';
+        spockButton.style.marginRight = '2rem';
         spockButton.addEventListener('click', function() {
             let weapon = this.getAttribute("weapon-type");
             battle(weapon);
@@ -152,6 +155,7 @@ function activateUpgrade(upgradeType, upgradeAction) {
 
         weaponSelect.appendChild(lizardButton);
         weaponSelect.appendChild(spockButton);
+        }
     }
 }
 
