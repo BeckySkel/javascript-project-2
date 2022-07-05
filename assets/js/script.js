@@ -112,7 +112,7 @@ function displayMessage(messageType) {
         <button class="upgrade-option">Option 3</button>
         </div>
         `;
-        unlockUpgrade();
+        chooseUpgrade();
     };
 
     // -- add button to close message window
@@ -131,7 +131,12 @@ function displayMessage(messageType) {
             closeMessage();
 
             if (messageButtons[i].classList[0] === 'upgrade-option') {
-                activateUpgrade(messageButtons[i].classList[1], 'PLACEHOLDER - add action from upgrades list');
+                let upgradeType = messageButtons[i].classList[1];
+                // console.log(upgradeType);
+                let upgradeAction = messageButtons[i].classList[1] === 'theme-upgrade' ? messageButtons[i].children[1].classList[1] : messageButtons[i].children[1].innerHTML;
+                // console.log(upgradeAction);
+
+                activateUpgrade(upgradeType, upgradeAction);
             }
         })
 
@@ -155,7 +160,9 @@ function displayMessage(messageType) {
     }
 }
 
-
+/**
+ * Closes the message display and reinstates buttons and links (settings, rules, welcome, level-up)
+ */
 function closeMessage() {
     // -- remove message window
     let messageContainer = document.getElementById('message-container');
@@ -178,14 +185,18 @@ function closeMessage() {
 
 
 /**
- * 
+ * Activates the selected upgrade from the level-up message
  * @param {*} upgradeType 
  * @param {*} upgradeAction 
  */
-
 function activateUpgrade(upgradeType, upgradeAction) {
     if (upgradeType === 'theme-upgrade') {
-        document.body.style.background = upgradeAction;
+        document.body.classList.add(upgradeAction);
+        let removeClass = document.body.classList[0];
+        document.body.classList.remove(removeClass);
+        if (upgradeAction === 'dark-theme') {
+            document.body.style.color = '#fff';
+        }
     } else if (upgradeType === 'game-upgrade') {
         let weaponSelect = document.getElementById('weapon-select');
 
@@ -274,7 +285,7 @@ function weaponChoices() {
 
     // -- if all buttons present, combine weapon arrays
     let allWeaponsUnlocked = document.getElementById('weapon-select').children.length;
-    console.log(allWeaponsUnlocked);
+    // console.log(allWeaponsUnlocked);
     if (Number(allWeaponsUnlocked) === 5) {
         weapons = [].concat(coreWeapons, additionalWeapons);
         // console.log(weapons);
@@ -391,7 +402,7 @@ function displayScores(outcome) {
 // incrememnt score-bar & next level
 function incrementScoreBar(points) {
     let level = Number(document.getElementById('level').innerHTML);
-    let requiredWins = Number(level) + 2;
+    let requiredWins = Number(level);
     let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
     let progress = scoreBarWidth / requiredWins;
 
@@ -411,72 +422,98 @@ function incrementScoreBar(points) {
 }
 
 // unlock new upgrade at next level?
-function unlockUpgrade() {
-    let upgrades = [{
-            name: 'Lizard & Spock',
-            identifier: 'lizard-spock',
-            type: 'game-upgrade',
-            image: `
-            <div class="upgrade-display">
-            <i class="fa-solid fa-hand-lizard"></i>
-            <i class="fa-solid fa-hand-spock"></i>
-            </div>
-            `,
-            action: ''
-        },
-        {
-            name: 'Rainbow Theme',
-            identifier: 'purple-theme',
-            type: 'theme-upgrade',
-            image: `
-            <div class="upgrade-display" style="
-            background: linear-gradient(135deg, rgba(255,0,21,1) 0%, 
-            rgba(255,136,0,1) 15%, 
-            rgba(241,255,0,1) 30%, 
-            rgba(13,255,0,1) 45%, 
-            rgba(0,171,255,1) 60%, 
-            rgba(113,0,255,1) 75%, 
-            rgba(255,0,200,1) 90%);">
-            </div>
-            `,
-            action: `linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat;`
-        },
-        {
-            name: 'Pink Theme',
-            identifier: 'pink-theme',
-            type: 'theme-upgrade',
-            image: `
-            <div class="upgrade-display" style="background: linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;">
-            </div>
-            `,
-            action: `linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;`
-        },
-        {
-            name: 'Dark Theme',
-            identifier: 'dark-theme',
-            type: 'theme-upgrade',
-            image: `
-            <div class="upgrade-display" style="background: linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;">
-            </div>
-            `,
-            action: `linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;`
-        }
-    ];
+function chooseUpgrade() {
+    // let upgrades = [{
+    //         name: 'Lizard & Spock',
+    //         identifier: 'lizard-spock',
+    //         type: 'game-upgrade',
+    //         image: `
+    //         <div class="upgrade-display">
+    //         <i class="fa-solid fa-hand-lizard"></i>
+    //         <i class="fa-solid fa-hand-spock"></i>
+    //         </div>
+    //         `,
+    //         action: ''
+    //     },
+    //     {
+    //         name: 'Rainbow Theme',
+    //         identifier: 'purple-theme',
+    //         type: 'theme-upgrade',
+    //         image: `
+    //         <div class="upgrade-display" style="
+    //         background: linear-gradient(135deg, rgba(255,0,21,1) 0%, 
+    //         rgba(255,136,0,1) 15%, 
+    //         rgba(241,255,0,1) 30%, 
+    //         rgba(13,255,0,1) 45%, 
+    //         rgba(0,171,255,1) 60%, 
+    //         rgba(113,0,255,1) 75%, 
+    //         rgba(255,0,200,1) 90%);">
+    //         </div>
+    //         `,
+    //         action: `linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat;`
+    //     },
+    //     {
+    //         name: 'Pink Theme',
+    //         identifier: 'pink-theme',
+    //         type: 'theme-upgrade',
+    //         image: `
+    //         <div class="upgrade-display" style="background: linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;">
+    //         </div>
+    //         `,
+    //         action: `linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;`
+    //     },
+    //     {
+    //         name: 'Dark Theme',
+    //         identifier: 'dark-theme',
+    //         type: 'theme-upgrade',
+    //         image: `
+    //         <div class="upgrade-display" style="background: linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;">
+    //         </div>
+    //         `,
+    //         action: `linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;`
+    //     }
+    // ];
+
+    let upgrades = document.getElementsByClassName('locked');
+    // let upgradesName = upgrades[0].children[1].classList[1];
+    // console.log(upgradesName);
+
+    console.log(Array.from(upgrades));
 
     let upgradeOption = document.getElementsByClassName('upgrade-option');
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < upgradeOption.length; i++) {
         let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
-        upgradeOption[i].innerHTML = `<p>${upgrade.name}</p>` + upgrade.image;
-        // upgradeOption[i].id = upgrade.identifier;
-        upgradeOption[i].classList.add(upgrade.type);
+        let upgradeName = upgrade.children[1].classList[1];
+        upgradeOption[i].innerHTML = upgrade.innerHTML;
+        upgradeOption[i].classList.add(upgrade.classList[2]);
+        // console.log(upgradeOption);
 
-        for (let i = 0; i < upgrades.length; i++) {
-            if (upgrades[i].name === upgrade.name) {
-                upgrades.splice(i, 1);
-            }
-        }
+        
+        
+        // console.log(upgradeArray);
+
+        // for (let i = 0; i < upgradeArray.length; i++) {
+        //     console.log(upgradeArray[i].children[1].classList[2]);
+        //     if (upgradeArray[i].classList[2] === upgrade.name) {
+        //         upgradeArray.splice(i, 1);
+        //         console.log(upgradeArray);
+        //     }
+        // }
     }
+
+    // for (let i = 0; i < upgradeOption.length; i++) {
+    //     let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
+    //     upgradeOption[i].innerHTML = `<p>${upgrade.name}</p>` + upgrade.image;
+    //     // upgradeOption[i].id = upgrade.identifier;
+    //     upgradeOption[i].classList.add(upgrade.type);
+
+    //     for (let i = 0; i < upgrades.length; i++) {
+    //         if (upgrades[i].name === upgrade.name) {
+    //             upgrades.splice(i, 1);
+    //         }
+    //     }
+    // }
 }
 
 // disable upgrade once selected and unlock in settings
