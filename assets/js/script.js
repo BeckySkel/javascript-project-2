@@ -17,11 +17,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // -- add event listener to display settings menu
-    let openSettings = document.getElementsByClassName('open-settings')[0];
-    openSettings.addEventListener('click', function () {
-        displayMessage('settings');
-    });
+    // -- add event listeners to rules and settings icons
+    let navIcons = document.getElementsByTagName('ul')[0].children;
+
+    for (let navIcon of navIcons) {
+        let x = navIcon.children[0].getAttribute('aria-label');
+        navIcon.addEventListener('click', function() {
+            displayMessage(x);
+        })
+    }
 
     // -- display welcome message
     setTimeout(displayMessage('welcome'), 1000);
@@ -124,45 +128,29 @@ function displayMessage(messageType) {
             }
         })
 
-        // -- restart game
         if (messageButtons[i].id === 'restart') {
+            // -- restart game
             messageButtons[i].addEventListener("click", function () {
                 alert('Page reloading');
                 document.location.reload(true);
             });
-            // -- open settings
         } else if (messageButtons[i].classList[0] === 'open-settings') {
+            // -- open settings
             messageButtons[i].addEventListener('click', function () {
-                displayMessage('settings');
+                setTimeout(function() {displayMessage('settings')}, 500)
             });
-            // -- open game rules
         } else if (messageButtons[i].id === 'rules') {
+            // -- open game rules
             messageButtons[i].addEventListener('click', function () {
-                displayMessage('rules');
+                setTimeout(function() {displayMessage('rules')}, 500)
             });
-        }
-
-        for (let i = 0; i < weapons.length; i++) {
-            weapons[i].disabled = false;
         }
     }
-
-
 }
 
-// function close() {
-//     let messageContainer = document.getElementById('message-container');
-//     messageContainer.style.top = '90%';
-//     messageContainer.style.animation = 'slide-out 0.8s linear';
-//     setTimeout(function () {
-//         messageContainer.remove()
-//     }, 800);
-
-//     // -- show navigation icons
-//     document.getElementsByTagName('ul')[0].style.display = 'block';
-// }
 
 function closeMessage() {
+    // -- remove message window
     let messageContainer = document.getElementById('message-container');
     messageContainer.style.top = '90%';
     messageContainer.style.animation = 'slide-out 0.8s linear';
@@ -172,8 +160,14 @@ function closeMessage() {
 
     // -- show navigation icons
     document.getElementsByTagName('ul')[0].style.display = 'block';
-}
 
+    // -- reinstate game buttons
+    let weapons = document.getElementById("weapon-select").children;
+
+    for (let i = 0; i < weapons.length; i++) {
+        weapons[i].disabled = false;
+    }
+}
 
 
 /**
