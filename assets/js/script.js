@@ -21,10 +21,16 @@ document.addEventListener('DOMContentLoaded', function () {
     let navIcons = document.getElementsByTagName('ul')[0].children;
 
     for (let navIcon of navIcons) {
-        let x = navIcon.children[0].getAttribute('aria-label');
+        let message = navIcon.children[0].getAttribute('aria-label');
         navIcon.addEventListener('click', function() {
-            displayMessage(x);
+            displayMessage(message);
         })
+    }
+
+    // -- lock upgrades
+    let upgrades = document.getElementsByClassName('locked');
+    for (let upgrade of upgrades) {
+        upgrade.disabled = true;
     }
 
     // -- display welcome message
@@ -35,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return "Are you sure you want to leave? All progress will be lost!";
     }
 });
+
 
 /**
  * A pop-up to display a welcome message, level-up messages and rewards select, settings, game rules or a message of praise for completing the game
@@ -220,10 +227,6 @@ function activateUpgrade(upgradeType, upgradeAction) {
         }
     }
 }
-
-
-
-
 
 
 /**
@@ -465,7 +468,7 @@ function unlockUpgrade() {
     for (let i = 0; i < 3; i++) {
         let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
         upgradeOption[i].innerHTML = `<p>${upgrade.name}</p>` + upgrade.image;
-        upgradeOption[i].id = upgrade.identifier;
+        // upgradeOption[i].id = upgrade.identifier;
         upgradeOption[i].classList.add(upgrade.type);
 
         for (let i = 0; i < upgrades.length; i++) {
