@@ -19,7 +19,59 @@
 </head>
 
 <body>
+    <ul>
+        <li>
+            <a class="icons open-settings" href="/#"><i class="fa-solid fa-gear"></i></a>
+        </li>
+        <!-- <li>
+            <a class="icons open-rules" href="/#"><i class="fa-solid fa-book-open"></i></a>
+        </li> -->
+        <li>
+            <a class="icons open-rules" href="/#"><i class="fa-solid fa-book"></i></a>
+        </li>
+    </ul>
+
+    <div id="settings">
+        <a class="icons close-window" href="/#"><i class="fa-solid fa-xmark"></i></a>
+        <h2>Settings</h2>
+        <h3>Upgrades:</h3>
+        <div class="message-buttons">
+            <button class="upgrade-toggle">
+                <p>Lizard & Spock</p>
+                <div class="upgrade-display">
+                    <i class="fa-solid fa-hand-lizard"></i>
+                    <i class="fa-solid fa-hand-spock"></i>
+                </div>
+            </button>
+            <button class="upgrade-toggle">
+                <p>Pink Theme</p>
+                <div class="upgrade-display"
+                    style="background: linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;">
+                </div>
+            </button>
+            <button class="upgrade-toggle">
+                <p>Dark Theme</p>
+                <div class="upgrade-display"
+                    style="background: linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;">
+                </div>
+            </button>
+            <button class="upgrade-toggle">
+                <p>Rainbow Theme</p>
+                <div class="upgrade-display" style="
+                        background: linear-gradient(135deg, rgba(255,0,21,1) 0%, 
+                        rgba(255,136,0,1) 15%, 
+                        rgba(241,255,0,1) 30%, 
+                        rgba(13,255,0,1) 45%, 
+                        rgba(0,171,255,1) 60%, 
+                        rgba(113,0,255,1) 75%, 
+                        rgba(255,0,200,1) 90%);">
+                </div>
+            </button>
+        </div>
+    </div>
+
     <h1>Ultimate RPS</h1>
+
 
     <div id="game-board">
 
@@ -31,7 +83,7 @@
         <p id="versus">Vs.</p>
 
         <div class="user-board">
-            <div id ="user-display" class="display box"></div>
+            <div id="user-display" class="display box"></div>
 
             <div id="weapon-select">
                 <button weapon-type="rock">Rock</button>

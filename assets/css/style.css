@@ -12,6 +12,7 @@ body {
     /* background: linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat; */
     /* background: linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat; */
     /* background: linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat; */
+    /* background: linear-gradient(135deg, rgba(255,0,21,1) 0%, rgba(255,136,0,1) 15%, rgba(241,255,0,1) 30%, rgba(13,255,0,1) 45%, rgba(0,171,255,1) 60%, rgba(113,0,255,1) 75%, rgba(255,0,200,1) 90%); */
     background-attachment: fixed;
     font-family: 'Cabin', sans-serif;
     color: #3c3c3c;
@@ -19,11 +20,40 @@ body {
     width: 100%;
 }
 
+.icons {
+    font-size: 5rem;
+    color: white;
+    text-shadow: 0px 1px 8px #395C6B;
+    padding: 0.5rem;
+    /* position: absolute;
+    right: 2rem;
+    top: 1.5rem; */
+}
+
+ul {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    list-style-type: none;   
+}
+
+ul li {
+    display: inline;
+}
+
+#settings {
+    display: none;
+}
+
+.icons:hover {
+    text-shadow: 0px 2px 15px #395C6B;
+}
+
 h1 {
     font-size: 6rem;
     text-transform: uppercase;
     letter-spacing: 0.2rem;
-    padding: 3rem 0;
+    padding: 2rem 0;
     /* code for 3D effect from https://codepen.io/mandymichael/pen/VprZaq */
     text-shadow:
         -1px -1px 0 #800080, 1px -1px 0 #800080, -1px 1px 0 #800080, 1px 1px 0 #800080,
@@ -157,7 +187,7 @@ button:disabled:hover {
 }
 
 #message-container {
-    height: 30%;
+    height: 40%;
     position: absolute;
     width: 100%;
     background: #B8FFDE;
@@ -184,13 +214,13 @@ button:disabled:hover {
     margin: 0 20px;
 }
 
-.upgrade-option {
+.upgrade-option, .upgrade-toggle {
     width: 11rem;
     font-size: 1.5rem;
     height: 11rem;
 }
 
-.upgrade-option:active {
+.upgrade-option:active, .upgrade-toggle:active {
     font-size: 1.4rem;
 }
 
@@ -212,7 +242,7 @@ button:disabled:hover {
     color: #3c3c3c;
 }
 
-.upgrade-option:active .upgrade-display {
+.upgrade-option:active .upgrade-display, .upgrade-toggle:active .upgrade-display {
     width: 8.6rem;
     height: 6.3rem;
     font-size: 3.4rem;
@@ -220,37 +250,37 @@ button:disabled:hover {
 
 @keyframes slide-in {
     0% {
-      top: -30%;
+      top: -35%;
     }
     60% {
-      top: calc(35% + 5px);
+      top: calc(30% + 5px);
     } 
     70% {
-        top: calc(35% - 5px);
+        top: calc(30% - 5px);
     } 
     80% {
-        top: calc(35% + 3px);
+        top: calc(30% + 3px);
     }
     90% {
-        top: calc(35% - 2px);
+        top: calc(30% - 2px);
     }
     100% {
-        top: 35%;
+        top: 30%;
     }
 }
 
 @keyframes slide-out {
     0% {
-        top: 35%;
+        top: 30%;
     }
     20% {
-        top: calc(35% + 5px);
+        top: calc(30% + 5px);
     }
     40% {
-        top: calc(35% - 10px);
+        top: calc(30% - 10px);
     }
     100% {
-        top: 100%;
+        top: 90%;
     }
 }
 
@@ -271,6 +301,10 @@ button:disabled:hover {
     #versus {
         font-size: 2rem;
         padding: 2rem;
+    }
+
+    #weapon-select {
+        width: 300px;
     }
     
     button {
@@ -311,6 +345,10 @@ button:disabled:hover {
     .display {
         width: 250px;
         height: 250px;
+    }
+
+    #weapon-select {
+        width: 250px;
     }
 
     #versus {
@@ -373,6 +411,10 @@ button:disabled:hover {
     #comp-display {
         width: 150px;
         height: 150px;
+    }
+
+    #weapon-select {
+        width: 200px;
     }
 
     button {

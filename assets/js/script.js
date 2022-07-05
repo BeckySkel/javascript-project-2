@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // -- add event listener to display settings menu
+    let openSettings = document.getElementsByClassName('open-settings')[0];
+    openSettings.addEventListener('click', function () {
+        displayMessage('settings');
+    });
+
     // -- display welcome message
     setTimeout(displayMessage('welcome'), 1000);
 
@@ -27,35 +33,38 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- * A pop-up message display that welcomes the user, rewards them for leveling-up, or praises them for completing the game
- * temperarily disables game buttons when displayed
- * disappears when button clicked
+ * A pop-up to display a welcome message, level-up messages and rewards select, settings, game rules or a message of praise for completing the game
+ * temporarily disables game buttons when displayed, message disappears when any button clicked
+ * takes messageType to determine message to display
  */
 function displayMessage(messageType) {
     // -- disable game buttons
-    let weapons = document.getElementById("weapon-select");
+    let weapons = document.getElementById("weapon-select").children;
 
-    for (let i = 0; i < weapons.children.length; i++) {
-        weapons.children[i].disabled = true;
+    for (let i = 0; i < weapons.length; i++) {
+        weapons[i].disabled = true;
     }
+
+    // -- hide navigation icons
+    document.getElementsByTagName('ul')[0].style.display = 'none';
 
     //  -- create and display message container
     let messageContainer = document.createElement('div');
     messageContainer.id = 'message-container';
-    messageContainer.style.top = '35%';
+    messageContainer.style.top = '30%';
     messageContainer.style.animation = 'slide-in 1s ease-out';
+    document.body.appendChild(messageContainer);
 
-    let body = document.getElementsByTagName('body')[0];
-    body.appendChild(messageContainer);
-
-    // -- add message HTML (welcome, winner or level up)
+    // -- add message HTML (welcome, winner, settings, rules or level up)
     if (messageType === 'welcome') {
         messageContainer.innerHTML = `
         <h2>Welcome!</h2>
-        <p>Ultimate RPS is a game of Rock, Paper, Scissors.. with a twist!
+        <p>Ultimate RPS is an exciting game of Rock, Paper, Scissors... with a twist!
         Level up as you battle the computer and win fun upgrades along your way to victory!
         </p>
         <div id="message-buttons">
+        <button id="rules">Rules</button>
+        <button class="open-settings">Settings</button>
         <button>Begin!</button>
         </div>
         `;
@@ -68,6 +77,20 @@ function displayMessage(messageType) {
         </div>
         <p>The game will be restared and all progress will be lost</p>
         `;
+    } else if (messageType === 'settings') {
+        let settings = document.getElementById('settings').innerHTML;
+        messageContainer.innerHTML = settings;
+    } else if (messageType === 'rules') {
+        messageContainer.innerHTML = `
+        <a class="icons close-window" href="/#"><i class="fa-solid fa-xmark"></i></a>
+        <h2>How to Play</h2>
+        <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        </ol>
+        `;
     } else {
         messageContainer.innerHTML = `
         <h2>Congratulations!</h2>
@@ -79,40 +102,85 @@ function displayMessage(messageType) {
         </div>
         `;
         unlockUpgrade();
+    };
+
+    // -- add button to close message window
+    let closeWindow = document.getElementsByClassName('close-window');
+    for (let i = 0; i < closeWindow.length; i++) {
+        closeWindow[i].addEventListener('click', function () {
+            closeMessage();
+        })
     }
 
     // -- remove message and take action when option selected
-    let messageButtons = document.getElementById("message-buttons");
+    let messageButtons = document.getElementById("message-buttons").children;
 
-    for (let i = 0; i < messageButtons.children.length; i++) {
-        if (messageButtons.children[i].id === 'restart') {
-            messageButtons.children[i].addEventListener("click", function () {
+    for (let i = 0; i < messageButtons.length; i++) {
+        messageButtons[i].addEventListener('click', function () {
+            closeMessage();
+
+            if (messageButtons[i].classList[0] === 'upgrade-option') {
+                activateUpgrade(messageButtons[i].classList[1], 'PLACEHOLDER - add action from upgrades list');
+            }
+        })
+
+        // -- restart game
+        if (messageButtons[i].id === 'restart') {
+            messageButtons[i].addEventListener("click", function () {
                 alert('Page reloading');
                 document.location.reload(true);
-            })
-        } else {
-            messageButtons.children[i].addEventListener("click", function () {
-                messageContainer.style.top = '100%';
-                messageContainer.style.animation = 'slide-out 0.8s linear';
-                setTimeout(function () {
-                    messageContainer.remove()
-                }, 800);
+            });
+            // -- open settings
+        } else if (messageButtons[i].classList[0] === 'open-settings') {
+            messageButtons[i].addEventListener('click', function () {
+                displayMessage('settings');
+            });
+            // -- open game rules
+        } else if (messageButtons[i].id === 'rules') {
+            messageButtons[i].addEventListener('click', function () {
+                displayMessage('rules');
+            });
+        }
 
-                if (messageButtons.children[i].classList[0] === 'upgrade-option') {
-                    activateUpgrade(messageButtons.children[i].classList[1], 'PLACEHOLDER - add action from upgrades list');
-                }
-
-                for (let i = 0; i < weapons.children.length; i++) {
-                    weapons.children[i].disabled = false;
-                }
-            })
+        for (let i = 0; i < weapons.length; i++) {
+            weapons[i].disabled = false;
         }
     }
+
+
+}
+
+// function close() {
+//     let messageContainer = document.getElementById('message-container');
+//     messageContainer.style.top = '90%';
+//     messageContainer.style.animation = 'slide-out 0.8s linear';
+//     setTimeout(function () {
+//         messageContainer.remove()
+//     }, 800);
+
+//     // -- show navigation icons
+//     document.getElementsByTagName('ul')[0].style.display = 'block';
+// }
+
+function closeMessage() {
+    let messageContainer = document.getElementById('message-container');
+    messageContainer.style.top = '90%';
+    messageContainer.style.animation = 'slide-out 0.8s linear';
+    setTimeout(function () {
+        messageContainer.remove()
+    }, 800);
+
+    // -- show navigation icons
+    document.getElementsByTagName('ul')[0].style.display = 'block';
 }
 
 
 
-
+/**
+ * 
+ * @param {*} upgradeType 
+ * @param {*} upgradeAction 
+ */
 
 function activateUpgrade(upgradeType, upgradeAction) {
     if (upgradeType === 'theme-upgrade') {
@@ -121,40 +189,40 @@ function activateUpgrade(upgradeType, upgradeAction) {
         let weaponSelect = document.getElementById('weapon-select');
 
         if (weaponSelect.children.length === 3) {
-        let lizardButton = document.createElement('button');
-        lizardButton.setAttribute('weapon-type', 'lizard');
-        lizardButton.innerHTML = 'Lizard';
-        lizardButton.style.marginLeft = '2rem';
-        lizardButton.addEventListener('click', function() {
-            let weapon = this.getAttribute("weapon-type");
-            battle(weapon);
-        });
-        lizardButton.addEventListener('mouseenter', function () {
-            let weapon = this.getAttribute("weapon-type");
-            preview(weapon);
-        });
-        lizardButton.addEventListener('mouseleave', function () {
-            stopPreview();
-        });
+            let lizardButton = document.createElement('button');
+            lizardButton.setAttribute('weapon-type', 'lizard');
+            lizardButton.innerHTML = 'Lizard';
+            lizardButton.style.marginLeft = '2rem';
+            lizardButton.addEventListener('click', function () {
+                let weapon = this.getAttribute("weapon-type");
+                battle(weapon);
+            });
+            lizardButton.addEventListener('mouseenter', function () {
+                let weapon = this.getAttribute("weapon-type");
+                preview(weapon);
+            });
+            lizardButton.addEventListener('mouseleave', function () {
+                stopPreview();
+            });
 
-        let spockButton = document.createElement('button');
-        spockButton.setAttribute('weapon-type', 'spock');
-        spockButton.innerHTML = 'Spock';
-        spockButton.style.marginRight = '2rem';
-        spockButton.addEventListener('click', function() {
-            let weapon = this.getAttribute("weapon-type");
-            battle(weapon);
-        });
-        spockButton.addEventListener('mouseenter', function () {
-            let weapon = this.getAttribute("weapon-type");
-            preview(weapon);
-        });
-        spockButton.addEventListener('mouseleave', function () {
-            stopPreview();
-        });
+            let spockButton = document.createElement('button');
+            spockButton.setAttribute('weapon-type', 'spock');
+            spockButton.innerHTML = 'Spock';
+            spockButton.style.marginRight = '2rem';
+            spockButton.addEventListener('click', function () {
+                let weapon = this.getAttribute("weapon-type");
+                battle(weapon);
+            });
+            spockButton.addEventListener('mouseenter', function () {
+                let weapon = this.getAttribute("weapon-type");
+                preview(weapon);
+            });
+            spockButton.addEventListener('mouseleave', function () {
+                stopPreview();
+            });
 
-        weaponSelect.appendChild(lizardButton);
-        weaponSelect.appendChild(spockButton);
+            weaponSelect.appendChild(lizardButton);
+            weaponSelect.appendChild(spockButton);
         }
     }
 }
@@ -206,7 +274,7 @@ function weaponChoices() {
     ]
 
     let weapons;
-    
+
     // -- if all buttons present, combine weapon arrays
     let allWeaponsUnlocked = document.getElementById('weapon-select').children.length;
     console.log(allWeaponsUnlocked);
@@ -360,12 +428,18 @@ function unlockUpgrade() {
             action: ''
         },
         {
-            name: 'Purple Theme',
+            name: 'Rainbow Theme',
             identifier: 'purple-theme',
             type: 'theme-upgrade',
             image: `
-            <div class="upgrade-display" style="background: linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat;">
-
+            <div class="upgrade-display" style="
+            background: linear-gradient(135deg, rgba(255,0,21,1) 0%, 
+            rgba(255,136,0,1) 15%, 
+            rgba(241,255,0,1) 30%, 
+            rgba(13,255,0,1) 45%, 
+            rgba(0,171,255,1) 60%, 
+            rgba(113,0,255,1) 75%, 
+            rgba(255,0,200,1) 90%);">
             </div>
             `,
             action: `linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat;`
@@ -396,7 +470,7 @@ function unlockUpgrade() {
 
     for (let i = 0; i < 3; i++) {
         let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
-        upgradeOption[i].innerHTML = upgrade.name + upgrade.image;
+        upgradeOption[i].innerHTML = `<p>${upgrade.name}</p>` + upgrade.image;
         upgradeOption[i].id = upgrade.identifier;
         upgradeOption[i].classList.add(upgrade.type);
 
