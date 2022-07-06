@@ -124,8 +124,24 @@ function displayMessage(messageType) {
     }
 
     // -- remove message and take action when option selected
-    let messageButtons = document.getElementById("message-buttons").children;
+    let buttonContainer = document.getElementById("message-buttons") === null ? document.getElementsByClassName('settings-buttons')[1] : document.getElementById("message-buttons");
+    console.log(buttonContainer);
+    let messageButtons = buttonContainer.children;
     console.log(messageButtons);
+
+    if (document.getElementById("message-buttons") === null) {
+        let messageButtons = document.getElementsByClassName('settings-buttons')[1];
+        for (let i = 0; i < messageButtons.length; i++) {
+            messageButtons[i].addEventListener('click', function () {
+                closeMessage();
+    
+                if (messageButtons[i].classList[0] === 'upgrade-option') {
+                    let upgradeType = messageButtons[i].classList[1];
+                    let upgradeIdentifier = messageButtons[i].children[1].classList[1];
+                    activateUpgrade(upgradeType, upgradeIdentifier);
+                }
+            })
+    }
 
     for (let i = 0; i < messageButtons.length; i++) {
         messageButtons[i].addEventListener('click', function () {
@@ -493,8 +509,7 @@ function chooseUpgrade() {
     // }
 }
 
-// disable upgrade once selected and unlock in settings
+// settings enable/disable upgrades 
+// display only 1 of each upgrade, display disabled upgrades once ran out of available ones
 
-// settings and upgrade enable/disable 
-
-// play audio clip on winning/losing battle
+// play audio clip on winning/losing battle??
