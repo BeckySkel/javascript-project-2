@@ -124,13 +124,21 @@ function displayMessage(messageType) {
     }
 
     // -- remove message and take action when option selected
-    let buttonContainer = document.getElementById("message-buttons") === null ? document.getElementsByClassName('settings-buttons')[1] : document.getElementById("message-buttons");
-    console.log(buttonContainer);
-    let messageButtons = buttonContainer.children;
-    console.log(messageButtons);
+    // let buttonContainer = document.getElementById("message-buttons") === null ? document.getElementsByClassName('settings-buttons')[1] : document.getElementById("message-buttons");
+    // console.log(buttonContainer);
+    // let messageButtons = buttonContainer.children;
+    // console.log(messageButtons);
 
     if (document.getElementById("message-buttons") === null) {
-        let messageButtons = document.getElementsByClassName('settings-buttons')[1];
+        let messageButtons = document.getElementsByClassName('settings-buttons')[1].children;
+        for (let i = 0; i < messageButtons.length; i++) {
+            messageButtons[i].addEventListener('click', function () {
+                let upgradeType = messageButtons[i].classList[1];
+                    let upgradeIdentifier = messageButtons[i].children[1].classList[1];
+                    activateUpgrade(upgradeType, upgradeIdentifier);
+            })}
+    } else {   
+        let messageButtons = document.getElementById("message-buttons").children; 
         for (let i = 0; i < messageButtons.length; i++) {
             messageButtons[i].addEventListener('click', function () {
                 closeMessage();
@@ -141,18 +149,6 @@ function displayMessage(messageType) {
                     activateUpgrade(upgradeType, upgradeIdentifier);
                 }
             })
-    }
-
-    for (let i = 0; i < messageButtons.length; i++) {
-        messageButtons[i].addEventListener('click', function () {
-            closeMessage();
-
-            if (messageButtons[i].classList[0] === 'upgrade-option') {
-                let upgradeType = messageButtons[i].classList[1];
-                let upgradeIdentifier = messageButtons[i].children[1].classList[1];
-                activateUpgrade(upgradeType, upgradeIdentifier);
-            }
-        })
 
         if (messageButtons[i].id === 'restart') {
             // -- restart game
@@ -176,6 +172,8 @@ function displayMessage(messageType) {
         }
     }
 }
+}
+
 
 /**
  * Closes the message display and reinstates buttons and links (settings, rules, welcome, level-up)
@@ -204,10 +202,16 @@ function closeMessage() {
 /**
  * Activates the selected upgrade from the level-up message
  * @param {*} upgradeType classlist 1 e.g. theme-upgrade or game-upgrade
- * @param {*} upgradeAction e.g. dark-theme, pink-theme, etc.
+ * @param {*} upgradeIdentifier e.g. dark-theme, pink-theme, etc.
  */
 function activateUpgrade(upgradeType, upgradeIdentifier) {
     if (upgradeType === 'theme-upgrade') {
+        let currentTheme =  document.body.classList[0];
+        console.log(currentTheme);
+
+        if (currentTheme === upgradeIdentifier) {
+            console.log('already-applied');
+        } else {
         document.body.classList.add(upgradeIdentifier);
         let removeClass = document.body.classList[0];
         document.body.classList.remove(removeClass);
@@ -216,6 +220,7 @@ function activateUpgrade(upgradeType, upgradeIdentifier) {
         } else {
             document.body.style.color = '#3c3c3c';
         }  
+    }
 
         let test = document.getElementsByClassName(upgradeIdentifier)[1].parentElement;
         test.classList.remove('locked');
@@ -509,7 +514,8 @@ function chooseUpgrade() {
     // }
 }
 
+
 // settings enable/disable upgrades 
 // display only 1 of each upgrade, display disabled upgrades once ran out of available ones
 
-// play audio clip on winning/losing battle??
+//  play audio clip on winning/losing battle
