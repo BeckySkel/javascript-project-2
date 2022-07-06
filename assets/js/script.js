@@ -492,6 +492,4 @@ function chooseUpgrade() {
     }
 }
 
-// display only 1 of each upgrade, display disabled upgrades once ran out of available ones
-
 //  play audio clip on winning/losing battle

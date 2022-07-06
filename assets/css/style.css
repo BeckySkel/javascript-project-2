@@ -34,14 +34,14 @@ body {
     top: 1rem;
 }
 
-ul {
+#navigation {
     position: absolute;
     right: 2rem;
     top: 1.5rem;
     list-style-type: none;   
 }
 
-ul li {
+#navigation li {
     display: inline;
 }
 
@@ -51,6 +51,10 @@ ul li {
 
 .icons:hover {
     text-shadow: 0px 2px 15px #395C6B;
+}
+
+#how-to-play {
+    text-align: left;
 }
 
 h1 {
