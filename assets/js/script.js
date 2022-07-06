@@ -93,7 +93,7 @@ function displayMessage(messageType) {
         messageContainer.innerHTML = settings;
     } else if (messageType === 'rules') {
         messageContainer.innerHTML = `
-        <a class="icons close-window" href="\#"><i class="fa-solid fa-xmark"></i></a>
+        <a class="icons close-window"><i class="fa-solid fa-xmark"></i></a>
         <h2>How to Play</h2>
         <ol>
         <li></li>
@@ -221,11 +221,12 @@ function activateUpgrade(upgradeType, upgradeIdentifier) {
             document.body.style.color = '#3c3c3c';
         }  
     }
-
         let test = document.getElementsByClassName(upgradeIdentifier)[1].parentElement;
         test.classList.remove('locked');
-        test.disabled = false;         
+        test.disabled = false;      
+
     } else if (upgradeType === 'game-upgrade') {
+        // -- add extra weapon buttons
         let weaponSelect = document.getElementById('weapon-select');
 
         if (weaponSelect.children.length === 3) {
@@ -263,6 +264,9 @@ function activateUpgrade(upgradeType, upgradeIdentifier) {
 
             weaponSelect.appendChild(lizardButton);
             weaponSelect.appendChild(spockButton);
+        } else {
+            weaponSelect.removeChild(weaponSelect.children[4]);
+            weaponSelect.removeChild(weaponSelect.children[3]);
         }
 
         let test = document.getElementsByClassName(upgradeIdentifier)[0].parentElement;
