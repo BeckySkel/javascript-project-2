@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (let navIcon of navIcons) {
         let message = navIcon.children[0].getAttribute('aria-label');
-        navIcon.addEventListener('click', function() {
+        navIcon.addEventListener('click', function () {
             displayMessage(message);
         })
     }
@@ -82,18 +82,18 @@ function displayMessage(messageType) {
     } else if (messageType === 'winner') {
         messageContainer.innerHTML = `
         <h2>Congratulations!</h2>
-        <p>You've reached beat level 5 and completed the game! Click below if you'd like to restart:</p>
+        <p>You've beat level 5 and completed the game! Click below if you'd like to restart:</p>
         <div id="message-buttons">
         <button id="restart">Restart!</button>
         </div>
-        <p>The game will be restared and all progress will be lost</p>
+        <p>The game will be reset and all progress will be lost</p>
         `;
     } else if (messageType === 'settings') {
         let settings = document.getElementById('settings').innerHTML;
         messageContainer.innerHTML = settings;
     } else if (messageType === 'rules') {
         messageContainer.innerHTML = `
-        <a class="icons close-window" href="/#"><i class="fa-solid fa-xmark"></i></a>
+        <a class="icons close-window" href="\#"><i class="fa-solid fa-xmark"></i></a>
         <h2>How to Play</h2>
         <ol>
         <li></li>
@@ -125,6 +125,7 @@ function displayMessage(messageType) {
 
     // -- remove message and take action when option selected
     let messageButtons = document.getElementById("message-buttons").children;
+    console.log(messageButtons);
 
     for (let i = 0; i < messageButtons.length; i++) {
         messageButtons[i].addEventListener('click', function () {
@@ -132,29 +133,29 @@ function displayMessage(messageType) {
 
             if (messageButtons[i].classList[0] === 'upgrade-option') {
                 let upgradeType = messageButtons[i].classList[1];
-                // console.log(upgradeType);
-                let upgradeAction = messageButtons[i].classList[1] === 'theme-upgrade' ? messageButtons[i].children[1].classList[1] : messageButtons[i].children[1].innerHTML;
-                // console.log(upgradeAction);
-
-                activateUpgrade(upgradeType, upgradeAction);
+                let upgradeIdentifier = messageButtons[i].children[1].classList[1];
+                activateUpgrade(upgradeType, upgradeIdentifier);
             }
         })
 
         if (messageButtons[i].id === 'restart') {
             // -- restart game
             messageButtons[i].addEventListener("click", function () {
-                alert('Page reloading');
                 document.location.reload(true);
             });
         } else if (messageButtons[i].classList[0] === 'open-settings') {
             // -- open settings
             messageButtons[i].addEventListener('click', function () {
-                setTimeout(function() {displayMessage('settings')}, 500)
+                setTimeout(function () {
+                    displayMessage('settings')
+                }, 500)
             });
         } else if (messageButtons[i].id === 'rules') {
             // -- open game rules
             messageButtons[i].addEventListener('click', function () {
-                setTimeout(function() {displayMessage('rules')}, 500)
+                setTimeout(function () {
+                    displayMessage('rules')
+                }, 500)
             });
         }
     }
@@ -186,17 +187,23 @@ function closeMessage() {
 
 /**
  * Activates the selected upgrade from the level-up message
- * @param {*} upgradeType 
- * @param {*} upgradeAction 
+ * @param {*} upgradeType classlist 1 e.g. theme-upgrade or game-upgrade
+ * @param {*} upgradeAction e.g. dark-theme, pink-theme, etc.
  */
-function activateUpgrade(upgradeType, upgradeAction) {
+function activateUpgrade(upgradeType, upgradeIdentifier) {
     if (upgradeType === 'theme-upgrade') {
-        document.body.classList.add(upgradeAction);
+        document.body.classList.add(upgradeIdentifier);
         let removeClass = document.body.classList[0];
         document.body.classList.remove(removeClass);
-        if (upgradeAction === 'dark-theme') {
+        if (upgradeIdentifier === 'dark-theme') {
             document.body.style.color = '#fff';
-        }
+        } else {
+            document.body.style.color = '#3c3c3c';
+        }  
+
+        let test = document.getElementsByClassName(upgradeIdentifier)[1].parentElement;
+        test.classList.remove('locked');
+        test.disabled = false;         
     } else if (upgradeType === 'game-upgrade') {
         let weaponSelect = document.getElementById('weapon-select');
 
@@ -236,6 +243,10 @@ function activateUpgrade(upgradeType, upgradeAction) {
             weaponSelect.appendChild(lizardButton);
             weaponSelect.appendChild(spockButton);
         }
+
+        let test = document.getElementsByClassName(upgradeIdentifier)[0].parentElement;
+        test.classList.remove('locked');
+        test.disabled = false; 
     }
 }
 
@@ -402,7 +413,8 @@ function displayScores(outcome) {
 // incrememnt score-bar & next level
 function incrementScoreBar(points) {
     let level = Number(document.getElementById('level').innerHTML);
-    let requiredWins = Number(level);
+    let requiredWins = Number(level) + 2;
+
     let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
     let progress = scoreBarWidth / requiredWins;
 
@@ -423,84 +435,49 @@ function incrementScoreBar(points) {
 
 // unlock new upgrade at next level?
 function chooseUpgrade() {
-    // let upgrades = [{
-    //         name: 'Lizard & Spock',
-    //         identifier: 'lizard-spock',
-    //         type: 'game-upgrade',
-    //         image: `
-    //         <div class="upgrade-display">
-    //         <i class="fa-solid fa-hand-lizard"></i>
-    //         <i class="fa-solid fa-hand-spock"></i>
-    //         </div>
-    //         `,
-    //         action: ''
-    //     },
-    //     {
-    //         name: 'Rainbow Theme',
-    //         identifier: 'purple-theme',
-    //         type: 'theme-upgrade',
-    //         image: `
-    //         <div class="upgrade-display" style="
-    //         background: linear-gradient(135deg, rgba(255,0,21,1) 0%, 
-    //         rgba(255,136,0,1) 15%, 
-    //         rgba(241,255,0,1) 30%, 
-    //         rgba(13,255,0,1) 45%, 
-    //         rgba(0,171,255,1) 60%, 
-    //         rgba(113,0,255,1) 75%, 
-    //         rgba(255,0,200,1) 90%);">
-    //         </div>
-    //         `,
-    //         action: `linear-gradient(135deg, #E6C5ED 0%, #FF9AF7 50%, #E6C5ED 100%) no-repeat;`
-    //     },
-    //     {
-    //         name: 'Pink Theme',
-    //         identifier: 'pink-theme',
-    //         type: 'theme-upgrade',
-    //         image: `
-    //         <div class="upgrade-display" style="background: linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;">
-    //         </div>
-    //         `,
-    //         action: `linear-gradient(135deg, #EDC5D8 0%, #ff95af 50%, #EDC5D8 100%) no-repeat;`
-    //     },
-    //     {
-    //         name: 'Dark Theme',
-    //         identifier: 'dark-theme',
-    //         type: 'theme-upgrade',
-    //         image: `
-    //         <div class="upgrade-display" style="background: linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;">
-    //         </div>
-    //         `,
-    //         action: `linear-gradient(135deg, #232B6F 0%, #2A45CB 50%, #232B6F 100%) no-repeat;`
-    //     }
-    // ];
-
     let upgrades = document.getElementsByClassName('locked');
-    // let upgradesName = upgrades[0].children[1].classList[1];
-    // console.log(upgradesName);
-
-    console.log(Array.from(upgrades));
-
     let upgradeOption = document.getElementsByClassName('upgrade-option');
+    let upgradeArray = [];
 
     for (let i = 0; i < upgradeOption.length; i++) {
         let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
         let upgradeName = upgrade.children[1].classList[1];
+        console.log(upgradeName); // e.g. pink theme
+        // let upgradeTest = upgradeOption[i].children[1].classList[1];
         upgradeOption[i].innerHTML = upgrade.innerHTML;
         upgradeOption[i].classList.add(upgrade.classList[2]);
         // console.log(upgradeOption);
 
-        
-        
-        // console.log(upgradeArray);
-
-        // for (let i = 0; i < upgradeArray.length; i++) {
-        //     console.log(upgradeArray[i].children[1].classList[2]);
-        //     if (upgradeArray[i].classList[2] === upgrade.name) {
-        //         upgradeArray.splice(i, 1);
-        //         console.log(upgradeArray);
+        // for (let i = 0; i < upgradeOption.length; i++) {
+        //     let upgradeTest = upgradeOption[i].children[1].classList[1];
+        //     console.log(upgradeOption[i].children[1].classList[1]); // e.g. pink-theme
+        //     if (upgradeName === upgradeTest) {
+        //         console.log('match');
+        //     } else {
+        //         console.log('no match');
         //     }
         // }
+
     }
+
+    // for (let i = 0; i < upgradeOption.length; i++) {
+    //     let upgradeTest = upgradeOption[i].children[1].classList[1];
+    //     console.log(upgradeOption[i].children[1].classList[1]); // e.g. pink-theme
+    //     if (upgradeName === upgradeTest) {
+    //         console.log('match');
+    //     } else {
+    //         console.log('no match');
+    //     }
+    // }
+
+    // for (let i = 0; i < upgradeArray.length; i++) {
+    //     console.log(upgradeArray[i].children[1].classList[2]);
+    //     if (upgradeArray[i].classList[2] === upgrade.name) {
+    //         upgradeArray.splice(i, 1);
+    //         console.log(upgradeArray);
+    //     }
+    // }
+
 
     // for (let i = 0; i < upgradeOption.length; i++) {
     //     let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
