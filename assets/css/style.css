@@ -251,6 +251,10 @@ button:disabled:active {
     font-size: 3.5rem;
 }
 
+.upgrade-toggle:disabled .upgrade-display {
+    opacity: 0.5;
+}
+
 .upgrade-toggle:disabled .extra-buttons {
     background: grey;
     /* opacity: 0.2; */

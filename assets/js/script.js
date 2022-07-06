@@ -107,9 +107,9 @@ function displayMessage(messageType) {
         <h2>Congratulations!</h2>
         <p>You've reached level ${messageType}. Choose an upgrade to continue:</p>
         <div id="message-buttons">
-        <button class="upgrade-option">Option 1</button>
-        <button class="upgrade-option">Option 2</button>
-        <button class="upgrade-option">Option 3</button>
+        <button class="upgrade-option" disabled="true">No more upgrades!</button>
+        <button class="upgrade-option" disabled="true">No more upgrades!</button>
+        <button class="upgrade-option" disabled="true">No more upgrades!</button>
         </div>
         `;
         chooseUpgrade();
@@ -134,15 +134,16 @@ function displayMessage(messageType) {
         for (let i = 0; i < messageButtons.length; i++) {
             messageButtons[i].addEventListener('click', function () {
                 let upgradeType = messageButtons[i].classList[1];
-                    let upgradeIdentifier = messageButtons[i].children[1].classList[1];
-                    activateUpgrade(upgradeType, upgradeIdentifier);
-            })}
-    } else {   
-        let messageButtons = document.getElementById("message-buttons").children; 
+                let upgradeIdentifier = messageButtons[i].children[1].classList[1];
+                activateUpgrade(upgradeType, upgradeIdentifier);
+            })
+        }
+    } else {
+        let messageButtons = document.getElementById("message-buttons").children;
         for (let i = 0; i < messageButtons.length; i++) {
             messageButtons[i].addEventListener('click', function () {
                 closeMessage();
-    
+
                 if (messageButtons[i].classList[0] === 'upgrade-option') {
                     let upgradeType = messageButtons[i].classList[1];
                     let upgradeIdentifier = messageButtons[i].children[1].classList[1];
@@ -150,28 +151,28 @@ function displayMessage(messageType) {
                 }
             })
 
-        if (messageButtons[i].id === 'restart') {
-            // -- restart game
-            messageButtons[i].addEventListener("click", function () {
-                document.location.reload(true);
-            });
-        } else if (messageButtons[i].classList[0] === 'open-settings') {
-            // -- open settings
-            messageButtons[i].addEventListener('click', function () {
-                setTimeout(function () {
-                    displayMessage('settings')
-                }, 500)
-            });
-        } else if (messageButtons[i].id === 'rules') {
-            // -- open game rules
-            messageButtons[i].addEventListener('click', function () {
-                setTimeout(function () {
-                    displayMessage('rules')
-                }, 500)
-            });
+            if (messageButtons[i].id === 'restart') {
+                // -- restart game
+                messageButtons[i].addEventListener("click", function () {
+                    document.location.reload(true);
+                });
+            } else if (messageButtons[i].classList[0] === 'open-settings') {
+                // -- open settings
+                messageButtons[i].addEventListener('click', function () {
+                    setTimeout(function () {
+                        displayMessage('settings')
+                    }, 500)
+                });
+            } else if (messageButtons[i].id === 'rules') {
+                // -- open game rules
+                messageButtons[i].addEventListener('click', function () {
+                    setTimeout(function () {
+                        displayMessage('rules')
+                    }, 500)
+                });
+            }
         }
     }
-}
 }
 
 
@@ -206,24 +207,24 @@ function closeMessage() {
  */
 function activateUpgrade(upgradeType, upgradeIdentifier) {
     if (upgradeType === 'theme-upgrade') {
-        let currentTheme =  document.body.classList[0];
+        let currentTheme = document.body.classList[0];
         console.log(currentTheme);
 
         if (currentTheme === upgradeIdentifier) {
             console.log('already-applied');
         } else {
-        document.body.classList.add(upgradeIdentifier);
-        let removeClass = document.body.classList[0];
-        document.body.classList.remove(removeClass);
-        if (upgradeIdentifier === 'dark-theme') {
-            document.body.style.color = '#fff';
-        } else {
-            document.body.style.color = '#3c3c3c';
-        }  
-    }
+            document.body.classList.add(upgradeIdentifier);
+            let removeClass = document.body.classList[0];
+            document.body.classList.remove(removeClass);
+            if (upgradeIdentifier === 'dark-theme') {
+                document.body.style.color = '#fff';
+            } else {
+                document.body.style.color = '#3c3c3c';
+            }
+        }
         let test = document.getElementsByClassName(upgradeIdentifier)[1].parentElement;
         test.classList.remove('locked');
-        test.disabled = false;      
+        test.disabled = false;
 
     } else if (upgradeType === 'game-upgrade') {
         // -- add extra weapon buttons
@@ -271,7 +272,7 @@ function activateUpgrade(upgradeType, upgradeIdentifier) {
 
         let test = document.getElementsByClassName(upgradeIdentifier)[0].parentElement;
         test.classList.remove('locked');
-        test.disabled = false; 
+        test.disabled = false;
     }
 }
 
@@ -406,7 +407,8 @@ function displayScores(outcome) {
 
     // -- calculate points needed to progress to next level
     let level = Number(document.getElementById('level').innerHTML);
-    let requiredWins = Number(level) + 2;
+    // let requiredWins = Number(level) + 2;
+    let requiredWins = Number(level);
     let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
     let progress = scoreBarWidth / requiredWins;
     let points = document.getElementById('progress-bar').offsetWidth / Number(progress);
@@ -438,8 +440,8 @@ function displayScores(outcome) {
 // incrememnt score-bar & next level
 function incrementScoreBar(points) {
     let level = Number(document.getElementById('level').innerHTML);
-    let requiredWins = Number(level) + 2;
-
+    // let requiredWins = Number(level) + 2;
+    let requiredWins = Number(level);
     let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
     let progress = scoreBarWidth / requiredWins;
 
@@ -460,66 +462,36 @@ function incrementScoreBar(points) {
 
 // unlock new upgrade at next level?
 function chooseUpgrade() {
-    let upgrades = document.getElementsByClassName('locked');
-    let upgradeOption = document.getElementsByClassName('upgrade-option');
+    let lockedUpgrades = document.getElementsByClassName('locked'); // 4 buttons
+    let upgradeOptions = document.getElementsByClassName('upgrade-option'); // 3 empty buttons
     let upgradeArray = [];
 
-    for (let i = 0; i < upgradeOption.length; i++) {
-        let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
-        let upgradeName = upgrade.children[1].classList[1];
-        console.log(upgradeName); // e.g. pink theme
-        // let upgradeTest = upgradeOption[i].children[1].classList[1];
-        upgradeOption[i].innerHTML = upgrade.innerHTML;
-        upgradeOption[i].classList.add(upgrade.classList[2]);
-        // console.log(upgradeOption);
+    let upgradeAmount = lockedUpgrades.length > upgradeOptions.length ? upgradeOptions.length : lockedUpgrades.length;
 
-        // for (let i = 0; i < upgradeOption.length; i++) {
-        //     let upgradeTest = upgradeOption[i].children[1].classList[1];
-        //     console.log(upgradeOption[i].children[1].classList[1]); // e.g. pink-theme
-        //     if (upgradeName === upgradeTest) {
-        //         console.log('match');
-        //     } else {
-        //         console.log('no match');
-        //     }
-        // }
+    for (let i = 0; i < lockedUpgrades.length; i++) { // e.g. 1 of 4
+        let upgradeName = lockedUpgrades[i].children[1].classList[1] // e.g. pink-theme
+        upgradeArray.push(upgradeName); // pink-theme, dark-theme, extra-weapons, etc 
+    } // creates array with all upgrades
 
+
+    for (let i = 0; i < upgradeAmount; i++) { // 3x (or less) random upgrades
+        let upgrade = upgradeArray[Math.floor(Math.random() * upgradeArray.length)]; // e.g. dark-theme
+        console.log(upgrade);
+
+        for (let i = 0; i < upgradeArray.length; i++) { // x4 check if random upgrades is in array and remove upgrade
+            if (upgrade === upgradeArray[i]) {
+                upgradeArray.splice(i, 1);
+            }
+        }
+
+        let upgradeOuter = upgradeOptions[i];
+        let upgradeInner = document.getElementsByClassName(upgrade)[0].parentElement;
+        upgradeOuter.innerHTML = upgradeInner.innerHTML;
+        upgradeOuter.disabled = false;
+        upgradeOuter.classList.add(upgradeInner.classList[2])
     }
-
-    // for (let i = 0; i < upgradeOption.length; i++) {
-    //     let upgradeTest = upgradeOption[i].children[1].classList[1];
-    //     console.log(upgradeOption[i].children[1].classList[1]); // e.g. pink-theme
-    //     if (upgradeName === upgradeTest) {
-    //         console.log('match');
-    //     } else {
-    //         console.log('no match');
-    //     }
-    // }
-
-    // for (let i = 0; i < upgradeArray.length; i++) {
-    //     console.log(upgradeArray[i].children[1].classList[2]);
-    //     if (upgradeArray[i].classList[2] === upgrade.name) {
-    //         upgradeArray.splice(i, 1);
-    //         console.log(upgradeArray);
-    //     }
-    // }
-
-
-    // for (let i = 0; i < upgradeOption.length; i++) {
-    //     let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
-    //     upgradeOption[i].innerHTML = `<p>${upgrade.name}</p>` + upgrade.image;
-    //     // upgradeOption[i].id = upgrade.identifier;
-    //     upgradeOption[i].classList.add(upgrade.type);
-
-    //     for (let i = 0; i < upgrades.length; i++) {
-    //         if (upgrades[i].name === upgrade.name) {
-    //             upgrades.splice(i, 1);
-    //         }
-    //     }
-    // }
 }
 
-
-// settings enable/disable upgrades 
 // display only 1 of each upgrade, display disabled upgrades once ran out of available ones
 
 //  play audio clip on winning/losing battle
