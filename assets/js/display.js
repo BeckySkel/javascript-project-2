@@ -55,7 +55,7 @@ function disableBackground() {
     }
 
     // -- hide navigation icons (settings & game rules)
-    document.getElementsByTagName('ul')[0].style.display = 'none';
+    document.getElementById('navigation').style.display = 'none';
 }
 
 
@@ -154,12 +154,13 @@ function populateButtons(messageType) {
             })
         }
     } else {
-        // -- all buttons close the current message
+        // -- all other buttons close the current message
         let messageButtons = document.getElementById("message-buttons").children;
         for (let i = 0; i < messageButtons.length; i++) {
             messageButtons[i].addEventListener('click', function () {
                 closeMessage();
 
+                // -- activate chosen upgrade from level-up
                 if (messageButtons[i].classList[0] === 'upgrade-option') {
                     let upgradeType = messageButtons[i].classList[1];
                     let upgradeIdentifier = messageButtons[i].children[1].classList[1];
@@ -238,10 +239,10 @@ function chooseUpgrade() {
  * upgradeIdentifier is the class of the display-upgrade div within the button e.g. dark-theme, pink-theme, etc.
  */
 function activateUpgrade(upgradeType, upgradeIdentifier) {
-    // -- identify current theme and prevent it being applied again
     if (upgradeType === 'theme-upgrade') {
+        // -- identify current theme and prevent it being applied again
         let currentTheme = document.body.classList[0];
-        if (currentTheme === upgradeIdentifier) {} else {
+        if (currentTheme !== upgradeIdentifier) {
             // -- apply selected theme
             document.body.classList.add(upgradeIdentifier);
             let removeClass = document.body.classList[0];
@@ -252,68 +253,51 @@ function activateUpgrade(upgradeType, upgradeIdentifier) {
                 document.body.style.color = '#3c3c3c';
             }
         }
-        // -- enable upgrade in settings menu
-        let unlockUpgrade = document.getElementsByClassName(upgradeIdentifier)[1].parentElement;
-        unlockUpgrade.classList.remove('locked');
-        unlockUpgrade.disabled = false;
-
     } else if (upgradeType === 'game-upgrade') {
-
-
-        // SPLIT HERE?? add buttons to weapons function?
-        // addNewWeapon('lizard'); addNewWeapon('spock');
-
         // -- add extra weapon buttons
         let weaponSelect = document.getElementById('weapon-select');
         if (weaponSelect.children.length === 3) {
-            // -- create and add lizard weapon-choice
-            let lizardButton = document.createElement('button');
-            lizardButton.setAttribute('weapon-type', 'lizard');
-            lizardButton.innerHTML = 'Lizard';
-            lizardButton.style.marginLeft = '2rem';
-            lizardButton.addEventListener('click', function () {
-                let weapon = this.getAttribute("weapon-type");
-                battle(weapon);
-            });
-            lizardButton.addEventListener('mouseenter', function () {
-                let weapon = this.getAttribute("weapon-type");
-                preview(weapon);
-            });
-            lizardButton.addEventListener('mouseleave', function () {
-                stopPreview();
-            });
-
-            // -- create and add spock weapon-choice
-            let spockButton = document.createElement('button');
-            spockButton.setAttribute('weapon-type', 'spock');
-            spockButton.innerHTML = 'Spock';
-            spockButton.style.marginRight = '2rem';
-            spockButton.addEventListener('click', function () {
-                let weapon = this.getAttribute("weapon-type");
-                battle(weapon);
-            });
-            spockButton.addEventListener('mouseenter', function () {
-                let weapon = this.getAttribute("weapon-type");
-                preview(weapon);
-            });
-            spockButton.addEventListener('mouseleave', function () {
-                stopPreview();
-            });
-
-            weaponSelect.appendChild(lizardButton);
-            weaponSelect.appendChild(spockButton);
+            addNewWeapon('Lizard');
+            addNewWeapon('Spock');
         } else {
             // -- remove buttons if upgrade already applied
             weaponSelect.removeChild(weaponSelect.children[4]);
             weaponSelect.removeChild(weaponSelect.children[3]);
         }
-
-        // -- disabled settings?? thought already done on previous function??
-        let test = document.getElementsByClassName(upgradeIdentifier)[0].parentElement;
-        test.classList.remove('locked');
-        test.disabled = false;
     }
+
+    // -- unlock upgrade in settings menu
+    let unlockUpgrade = upgradeType === 'theme-upgrade' ? document.getElementsByClassName(upgradeIdentifier)[1].parentElement : document.getElementsByClassName(upgradeIdentifier)[0].parentElement;
+    unlockUpgrade.classList.remove('locked');
+    unlockUpgrade.disabled = false;
+
 }
+
+
+/**
+ * Builds and adds extra buttons to weapon select
+ * weaponType takes Lizard and Spock 
+ */
+function addNewWeapon(weaponType) {
+    let newButton = document.createElement('button');
+    newButton.setAttribute('weapon-type', weaponType.toLowerCase());
+    newButton.innerHTML = weaponType;
+    newButton.addEventListener('click', function () {
+        let weapon = this.getAttribute("weapon-type");
+        battle(weapon);
+    });
+    newButton.addEventListener('mouseenter', function () {
+        let weapon = this.getAttribute("weapon-type");
+        preview(weapon);
+    });
+    newButton.addEventListener('mouseleave', function () {
+        stopPreview();
+    });
+
+    let weaponSelect = document.getElementById('weapon-select');
+    weaponSelect.appendChild(newButton);
+}
+
 
 /**
  * Closes the message display and enables buttons and links to continue game
@@ -331,9 +315,10 @@ function closeMessage() {
         document.body.style.overflow = 'visible';
     }, 750);
 
-
-    // -- show navigation icons
-    document.getElementsByTagName('ul')[0].style.display = 'block';
+    // -- show navigation icons after slight delay
+    setTimeout(function () {
+        document.getElementById('navigation').style.display = 'block';
+    }, 500);
 
     // -- reinstate game buttons
     let weapons = document.getElementById("weapon-select").children;
