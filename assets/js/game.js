@@ -139,7 +139,8 @@ function incrementScoreBar(points) {
     let calculatedWidth = Number(progress) * Number(points);
     progressBar.style.width = `${calculatedWidth}px`;
 
-    if (progressBar.offsetWidth === scoreBarWidth || progressBar.offsetWidth >= scoreBarWidth) {
+    // if (progressBar.offsetWidth === scoreBarWidth || progressBar.offsetWidth >= scoreBarWidth - 2) {
+        if (progressBar.offsetWidth >= scoreBarWidth - 2) {
         setTimeout(function () {
             ++level;
             level === 6 ? displayMessage('winner') : displayMessage(level);

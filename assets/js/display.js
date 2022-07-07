@@ -317,7 +317,7 @@ function closeMessage() {
 
     // -- show navigation icons after slight delay
     setTimeout(function () {
-        document.getElementById('navigation').style.display = 'block';
+        document.getElementById('navigation').style.display = 'flex';
     }, 500);
 
     // -- reinstate game buttons

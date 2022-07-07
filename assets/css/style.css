@@ -273,6 +273,7 @@ button:disabled:active {
     width: inherit;
     height: 40px;
     margin: 2rem 0 1rem;
+    overflow: hidden;
 }
 
 #progress-bar {
@@ -284,6 +285,7 @@ button:disabled:active {
 #scoreboard p {
     flex-grow: 2;
     font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -360,13 +362,78 @@ button:disabled:active {
 /* --- For medium/large screens, 1024px and below  */
 @media (max-width: 1024px) {
     h1 {
-        font-size: 4rem;
-        padding: 2rem 0;
+        font-size: 3.5rem;
+        padding: 2rem 0 1rem;
+    }
+
+    #navigation {
+        right: 1.5rem;  
     }
     
+    .icons {
+        font-size: 2rem;
+    }
+
+    #message-container {
+        font-size: 1rem;
+    }
+
+    #message-container > * {
+        padding: 0.5rem;
+    }
+    
+    #message-buttons {
+        padding: 1rem;
+    }
+    
+    #message-buttons button {
+        margin: 0 1rem;
+    }
+    
+    /* .settings-buttons .game-upgrade {
+        margin-right: 2rem;
+    } */
+    
+    /* .upgrade-toggle {
+        margin: 0.2rem;
+    } */
+    
+    .upgrade-option, .upgrade-toggle {
+        width: 8rem;
+        font-size: 1rem;
+        height: 8rem;
+    }
+    
+    .upgrade-option p, .upgrade-toggle p {
+        padding-top: 0.3rem;
+    }
+
+    .upgrade-option:active, .upgrade-toggle:active {
+        font-size: 0.9rem;
+    }
+    
+    .upgrade-display {
+        width: 6.5rem;
+        height: 4.7rem;
+        margin: 0.3rem auto;
+        font-size: 2.5rem;
+    }
+    
+    .upgrade-display * {
+        padding-top: 1rem;
+    }    
+    
+    .upgrade-option:active .upgrade-display, .upgrade-toggle:active .upgrade-display {
+        width: 6.2rem;
+        height: 4.5rem;
+        font-size: 2.3rem;
+    }
+
     .display {
         width: 300px;
         height: 300px;
+        margin-bottom: 0.5rem;
+        font-size: 10rem;
     }
     
     #versus {
@@ -379,18 +446,18 @@ button:disabled:active {
     }
     
     button {
-        width: 7rem;
-        font-size: 1.5rem;
-        margin-top: 1rem;
+        width: 5.5rem;
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
     }
     
     button:active {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
     
     #outcome {
-        font-size: 1.5rem;
-        padding-top: 2rem;
+        font-size: 1.2rem;
+        padding-top: 1rem;
     }
         
     #scoreboard {
@@ -399,44 +466,80 @@ button:disabled:active {
 
     #score-bar {
         height: 30px;
-        margin: 2rem 0 1.5rem;
+        margin: 1rem 0;
     }
     
     #scoreboard p {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+        font-size: 1.2rem;
     }
 }
 
 /* --- For medium screens, 768px and below  */
-@media (max-width: 768px) {
+@media (max-width: 770px) {
+    h1 {
+        font-size: 3rem;
+        padding-top: 1.5rem;
+    }
+
+    .icons {
+        font-size: 1.5rem;
+        padding: 0.2rem;
+    }
+
     .box {
         border: #3c3c3c solid 1.5px;
     }
+
+    /* -------------- upgrade selection queries */
     
     .display {
         width: 250px;
         height: 250px;
+        font-size: 8rem;
     }
 
     #weapon-select {
         width: 250px;
     }
 
-    #versus {
-        padding: 1rem; 
+    button {
+        width: 4.5rem;
+        font-size: 1rem;
+        border: #3c3c3c solid 1.5px;
     }
     
-    button {
-        border: #3c3c3c solid 1.5px;
+    button:active {
+        font-size: 0.9rem;
+    }
+
+    #versus {
+        font-size: 1.5rem;
+        padding: 1rem; 
+    }
+
+    #scoreboard {
+        width: 400px;
     }
 }
 
 /* --- For small screens, 600px and below  */
 @media (max-width: 600px) {
     h1 {
-        font-size: 3.5rem;
-        padding: 1rem 0;
+        font-size: 2.6rem;
+        padding-top: 2.5rem;
+        position: relative;
+    }
+
+    #navigation {
+        left: 0;
+        top: 0.6rem;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    #navigation .icons {
+        margin: 1rem;
     }
 
     #game-board {
@@ -444,13 +547,19 @@ button:disabled:active {
         align-items: center;
     }
 
-    .display {
+    #comp-display {
         width: 200px;
         height: 200px;
+        font-size: 6rem;
+    }
+
+    .display {
+        width: 250px;
+        height: 250px;
     }
 
     #versus {
-        font-size: 1.5rem;
+        font-size: 1rem;
         padding: 0.5rem; 
     }
 
@@ -460,6 +569,7 @@ button:disabled:active {
     
     #outcome {
         padding-top: 1rem;
+        font-size: 1rem;
     }
     
     #scoreboard {
@@ -479,25 +589,22 @@ button:disabled:active {
 /* --- For extra small screens, 340px and below  */
 @media (max-width: 340px) {
     h1 {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     #comp-display {
         width: 150px;
         height: 150px;
+        font-size: 5rem;
+    }
+
+    .display {
+        width: 220px;
+        height: 220px;
     }
 
     #weapon-select {
-        width: 200px;
-    }
-
-    button {
-        width: 5rem;
-        font-size: 1.2rem;
-    }
-    
-    button:active {
-        font-size: 1.1rem;
+        width: 250px;
     }
 
     #outcome {
@@ -506,5 +613,13 @@ button:disabled:active {
 
     #scoreboard {
         width: 250px;
+    }
+
+    #score-bar {
+        margin-top: 0.5rem;
+    }
+
+    #scoreboard p {
+        font-size: 0.8rem;
     }
 }
