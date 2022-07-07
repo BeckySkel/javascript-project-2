@@ -140,7 +140,7 @@ function displayMessage(messageType) {
 
 
 /**
- * Add event listeners to close current message window and either select a new upgrade or display new message
+ * Adds event listeners to close current message window and either select a new upgrade or display new message
  */
 function populateButtons(messageType) {
     // -- add event listeners to toggle upgrades from settings menu
@@ -321,11 +321,16 @@ function activateUpgrade(upgradeType, upgradeIdentifier) {
 function closeMessage() {
     // -- hide and remove message window
     let messageContainer = document.getElementById('message-container');
-    messageContainer.style.top = '90%';
+    messageContainer.style.top = '100%';
     messageContainer.style.animation = 'slide-out 0.8s linear';
+    document.body.style.overflow = 'hidden';
     setTimeout(function () {
         messageContainer.remove()
-    }, 800);
+    }, 750);
+    setTimeout(function () {
+        document.body.style.overflow = 'visible';
+    }, 750);
+
 
     // -- show navigation icons
     document.getElementsByTagName('ul')[0].style.display = 'block';
