@@ -591,7 +591,7 @@ button:disabled:active {
         -1px 2px 0 black, 0 3px 0 #800080, 1px 4px 0 #800080, 2px 5px 0px #800080,
         2px -1px 0 #800080, 3px 0 0 #800080, 4px 1px 0 #800080, 5px 2px 0px #800080, 6px 3px 0 #800080, 6px 5px 0 #800080,
         4px 9px 10px #395C6B; */
-        text-shadow: none;
+        /* text-shadow: none; */
     }
 
     #navigation {
