@@ -53,6 +53,9 @@ h1 {
     color: #FFF;
     text-shadow: 0px 1px 8px #395C6B;
     padding: 0.5rem;
+    border: none;
+    background: none;
+    box-shadow: none;
 }
 
 .icons:hover {
