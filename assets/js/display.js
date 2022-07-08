@@ -153,7 +153,8 @@ function populateButtons(messageType) {
                 activateUpgrade(upgradeType, upgradeIdentifier);
             })
         }
-    } else {
+    } else if (messageType !== 'rules') {
+        // -- no buttons present in rules message
         // -- all other buttons close the current message
         let messageButtons = document.getElementById("message-buttons").children;
         for (let i = 0; i < messageButtons.length; i++) {
@@ -194,7 +195,7 @@ function populateButtons(messageType) {
 
 
 /**
- * Randomly selects locked upgrades from the settings menu in the DOM to off to player
+ * Randomly selects locked upgrades from the settings menu in the DOM to offer to player
  * retrieved when player levels-up
  */
 function chooseUpgrade() {
@@ -212,7 +213,7 @@ function chooseUpgrade() {
         upgradeArray.push(upgradeName);
     }
 
-    // -- randomly choose as many upgrades as needed from the array
+    // -- randomly choose as many upgrades as needed from the array (3 or less)
     for (let i = 0; i < upgradeAmount; i++) {
         let upgrade = upgradeArray[Math.floor(Math.random() * upgradeArray.length)];
 

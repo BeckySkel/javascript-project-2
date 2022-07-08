@@ -2,7 +2,7 @@
  * The main game function, called when the player selects a weapon
  * creates a random answer for the computer and battles it against the player's choice
  */
- function battle(weapon) {
+function battle(weapon) {
     // -- retrieve weapons from objects array
     let weapons = weaponChoices();
 
@@ -42,7 +42,7 @@
  * Creates and stores an array of objects to be used as weapons in the game functions
  * returns the full array
  */
- function weaponChoices() {
+function weaponChoices() {
     // -- initialise core weapons in objects array
     let coreWeapons = [{
             value: 'rock',
@@ -103,7 +103,6 @@ function preview(weapon) {
     let weapons = weaponChoices();
 
     let userDisplay = document.getElementById('user-display');
-    // userDisplay.innerHTML = weapons
     userDisplay.style.color = '#d3d3d3';
     let weaponIndex = weapons.findIndex(object => {
         return object.value === weapon;
@@ -124,14 +123,13 @@ function stopPreview() {
 
 
 /**
- * 
- * @param {*} points 
+ * Increments progress bar to indicate progress towards next level
+ * increases with wins, decreases with losses, remains the same with draws 
  */
-// incrememnt score-bar & next level
 function incrementScoreBar(points) {
+    // -- read current level and width of score-bar from DOM
     let level = Number(document.getElementById('level').innerHTML);
     let requiredWins = Number(level) + 2;
-    // let requiredWins = Number(level);
     let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
     let progress = scoreBarWidth / requiredWins;
 
@@ -139,8 +137,9 @@ function incrementScoreBar(points) {
     let calculatedWidth = Number(progress) * Number(points);
     progressBar.style.width = `${calculatedWidth}px`;
 
-    // if (progressBar.offsetWidth === scoreBarWidth || progressBar.offsetWidth >= scoreBarWidth - 2) {
-        if (progressBar.offsetWidth >= scoreBarWidth - 2) {
+    // -- level up once progress bar is full
+    // -- slight allowance for rounded numbers within progress calculation
+    if (progressBar.offsetWidth >= scoreBarWidth - 2) {
         setTimeout(function () {
             ++level;
             level === 6 ? displayMessage('winner') : displayMessage(level);
@@ -151,11 +150,12 @@ function incrementScoreBar(points) {
     }
 }
 
+
 /**
  * Runs after player selects a weapon and the outcome is decided
  * calculates and displays scores based on outcome
  */
- function displayScores(outcome) {
+function displayScores(outcome) {
     // -- retrieve current scores
     let wins = Number(document.getElementById('wins').innerHTML);
     let loses = Number(document.getElementById('loses').innerHTML);

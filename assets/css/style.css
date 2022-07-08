@@ -669,7 +669,7 @@ button:disabled:active {
         font-size: 2rem;
     }
 
-    #message-container > p {
+    #message-container>p {
         width: 95%;
         max-width: 1000px;
     }
