@@ -27,43 +27,65 @@
 
 ---
 ## Lighthouse
-- All page variations were ran through Lighthouse on Chrome Devtools for both desktop and mobile device display. Ran in incognito mode. Any issues were dealt with and all now have a high passing mark.
+- All page variations were ran through Lighthouse on Chrome Devtools for both desktop and mobile device display. Standard site appearance ran in incognito mode on deployed site, variations ran through Gitpod preview server. Any issues were dealt with and all now have a high passing mark.
 
-#### index.html
+#### index.html with welcome message
+- Desktop
+
+![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-welcome.png)
+
+- Mobile
+
+![Screenshot of Lighthouse score for index.html on mobile](/assets/images/index-mobile.png)
+
+#### index.html with settings menu
 - Desktop
 
 ![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
 
 - Mobile
 
-![Screenshot of Lighthouse score for index.html on mobile](/assets/images/index-mobile.png)
-
-#### contact.html
+#### index.html with how to play
 - Desktop
 
-![Screenshot of Lighthouse score for contact.html on desktop](/assets/images/contact-desktop.png)
+![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
 
 - Mobile
 
-![Screenshot of Lighthouse score for contact.html on mobile](/assets/images/contact-mobile.png)
-
-#### sign-up.html
+#### index.html with level-up
 - Desktop
 
-![Screenshot of Lighthouse score for sign-up.html on desktop](/assets/images/sign-up-desktop.png)
+![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
 
 - Mobile
 
-![Screenshot of Lighthouse score for sign-up.html on mobile](/assets/images/sign-up-mobile.png)
-
-#### thank-you.html
+#### index.html with completion message
 - Desktop
 
-![Screenshot of Lighthouse score for thank-you.html on desktop](/assets/images/thank-you-desktop.png)
+![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
 
 - Mobile
 
-![Screenshot of Lighthouse score for thank-you.html on mobile](/assets/images/thank-you-mobile.png)
+#### index.html with dark theme
+- Desktop
+
+![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
+
+- Mobile
+
+#### index.html with rainbow theme
+- Desktop
+
+![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
+
+- Mobile
+
+#### index.html with pink theme
+- Desktop
+
+![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
+
+- Mobile
 
 ---
 ## Manual testing
