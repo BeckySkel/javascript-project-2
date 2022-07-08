@@ -12,15 +12,17 @@
     <meta name="author" content="Ultimate RPS">
 
     <title>Ultimate RPS</title>
-    <!-- Link to icon -->
+    <!-- Link to favicon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <!-- Link to CSS -->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
+<!-- Class on body tag interacts with CSS and JS to set the background colour -->
 <body class="blue-theme" style="background-attachment: fixed;">
     <h1>Ultimate RPS</h1>
-    
+
+    <!-- Main navigation links - links do not lead anywhere, but display content as pop-up messages -->
     <ul id="navigation">
         <li>
             <a class="icons open-settings" aria-label="settings"><i class="fa-solid fa-gear"></i></a>
@@ -30,17 +32,11 @@
         </li>
     </ul>
 
+    <!-- Not displayed on screen until called by displayMessage function -->
     <div id="settings">
         <a class="icons close-window"><i class="fa-solid fa-xmark"></i></a>
         <h2>Toggle Upgrades:</h2>
         <div class="settings-buttons upgrades">
-            <!-- <button class="upgrade-toggle locked game-upgrade">
-                <p>Lizard & Spock</p>
-                <div class="upgrade-display extra-weapons">
-                    <i class="fa-solid fa-hand-lizard"></i>
-                    <i class="fa-solid fa-hand-spock"></i>
-                </div>
-            </button> -->
             <button class="upgrade-toggle theme-upgrade">
                 <p>Blue Theme</p>
                 <div class="upgrade-display blue-theme">
@@ -61,7 +57,6 @@
                 <div class="upgrade-display rainbow-theme">
                 </div>
             </button>
-
             <button class="upgrade-toggle locked game-upgrade">
                 <p>Lizard & Spock</p>
                 <div class="upgrade-display extra-weapons">
@@ -73,46 +68,48 @@
         <p>Level-up to unlock!</p>
     </div>
 
-    
-
-
+    <!-- The main game area -->
     <div id="game-board">
 
+        <!-- Displays computer choice -->
         <div class="comp-board">
             <div id="comp-display" class="display box"></div>
         </div>
 
-
         <p id="versus">Vs.</p>
 
+        <!-- Displays user choice -->
         <div class="user-board">
             <div id="user-display" class="display box"></div>
 
+            <!-- Buttons to select weapon and begin game -->
             <div id="weapon-select">
                 <button weapon-type="rock">Rock</button>
                 <button weapon-type="paper">Paper</button>
                 <button weapon-type="scissors">Scissors</button>
             </div>
         </div>
-
     </div>
 
+    <!-- Displays outcome of battle function -->
     <p id="outcome">To begin, please select either Rock, Paper or Scissors!</p>
 
     <div id="scoreboard">
+        <!-- Scorebar provides visual representation of points system. Manipulated by incrementScoreBar function -->
         <div id="score-bar" class="box">
             <div id="progress-bar"></div>
         </div>
 
+        <!-- Displays scores for user, updated after each battle by displayScores function -->
         <p>Wins: <span id="wins">0</span></p>
         <p>Losses: <span id="loses">0</span></p>
         <p>Draws: <span id="draws">0</span></p>
         <p>Level: <span id="level">1</span></p>
     </div>
 
-    <!-- Link to JavaScript -->
+    <!-- Link to JavaScript for messages and general display -->
     <script src="assets/js/display.js"></script>
-    <!-- Link to JavaScript -->
+    <!-- Link to JavaScript to run main game -->
     <script src="assets/js/game.js"></script>
     <!-- Link to Font Awesome icons -->
     <script src="https://kit.fontawesome.com/3b376b7e60.js" crossorigin="anonymous"></script>
