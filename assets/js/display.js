@@ -101,7 +101,7 @@ function displayMessage(messageType) {
         messageContainer.innerHTML = settings;
     } else if (messageType === 'rules') {
         messageContainer.innerHTML = `
-        <button class="icons close-window"><i class="fa-solid fa-xmark"></i></button>
+        <button class="icons close-window" aria-label="Close game rules"><i class="fa-solid fa-xmark"></i></button>
         <h2>How to Play</h2>
         <p>Use the game buttons to select your weapon.
         Face-off against the computer complete the progress bar to unlock new upgrades at each level.
