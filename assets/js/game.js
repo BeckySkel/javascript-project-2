@@ -2,7 +2,7 @@
  * The main game function, called when the player selects a weapon
  * creates a random answer for the computer and battles it against the player's choice
  */
-function battle(weapon) {
+ function battle(weapon) {
     // -- retrieve weapons from objects array
     let weapons = weaponChoices();
 
@@ -27,10 +27,10 @@ function battle(weapon) {
         outcome = 'win';
         outcomeText.innerHTML = `You ${outcome}!`;
     } else if (weapon === compResponse.wins[0] || weapon === compResponse.wins[1]) {
-        outcome = 'lose'
+        outcome = 'lose';
         outcomeText.innerHTML = `You ${outcome}!`;
     } else {
-        outcome = 'Draw'
+        outcome = 'Draw';
         outcomeText.innerHTML = `${outcome}!`;
     }
 
@@ -62,7 +62,7 @@ function weaponChoices() {
             loses: ['rock', 'spock'],
             icon: `<i class="fa-solid fa-hand-scissors"></i>`
         }
-    ]
+    ];
 
     // -- initialise additional weapons in objects array
     let additionalWeapons = [{
@@ -77,19 +77,16 @@ function weaponChoices() {
             loses: ['paper', 'lizard'],
             icon: `<i class="fa-solid fa-hand-spock"></i>`
         }
-    ]
+    ];
 
     let weapons;
 
     // -- if all buttons present, combine weapon arrays
     let allWeaponsUnlocked = document.getElementById('weapon-select').children.length;
-    // console.log(allWeaponsUnlocked);
     if (Number(allWeaponsUnlocked) === 5) {
         weapons = [].concat(coreWeapons, additionalWeapons);
-        // console.log(weapons);
     } else {
         weapons = coreWeapons;
-        // console.log(weapons);
     }
 
     return weapons;
@@ -142,7 +139,10 @@ function incrementScoreBar(points) {
     if (progressBar.offsetWidth >= scoreBarWidth - 2) {
         setTimeout(function () {
             ++level;
-            level === 6 ? displayMessage('winner') : displayMessage(level);
+          if (level === 6) {
+            displayMessage('winner');
+          } else {
+            displayMessage(level);}
             document.getElementById('level').innerHTML = level;
             progressBar.style.width = 0;
         }, 500);

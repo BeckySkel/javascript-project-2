@@ -128,6 +128,7 @@ h1 {
 }
 
 .upgrade-display {
+    display: inline-block;
     border: solid #3c3c3c 2px;
     width: 8rem;
     height: 6.5rem;
@@ -152,9 +153,9 @@ h1 {
     font-size: 2.8rem;
 }
 
-.upgrade-option:active p,
-.upgrade-toggle:active p {
+ .upgrade-name {
     padding-top: 0.2rem;
+    display: inline-block;
 }
 
 .upgrade-toggle:disabled .upgrade-display {
@@ -405,8 +406,7 @@ button:disabled:active {
         height: 8rem;
     }
 
-    .upgrade-option p,
-    .upgrade-toggle p {
+    .upgrade-name {
         padding-top: 0.3rem;
     }
 
@@ -501,8 +501,7 @@ button:disabled:active {
         height: 6rem;
     }
 
-    .upgrade-option p,
-    .upgrade-toggle p {
+    .upgrade-name {
         padding-top: 0.4rem;
     }
 
@@ -598,8 +597,7 @@ button:disabled:active {
         height: 4rem;
     }
 
-    .upgrade-option p,
-    .upgrade-toggle p {
+    .upgrade-name {
         padding-top: 0.2rem;
     }
 
@@ -680,8 +678,7 @@ button:disabled:active {
         font-size: 0.6rem;
     }
 
-    .upgrade-option p,
-    .upgrade-toggle p {
+    .upgrade-name {
         padding-top: 0.2rem;
     }
 
