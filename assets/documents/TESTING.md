@@ -85,13 +85,15 @@
 ---
 ## Bugs
 ### Resolved Bugs
-- Issues with flexbox forcing non-active FAQs to open along with active ones, solved with help from [Techstacker](https://techstacker.com/prevent-flexbox-child-element-height-stretch-css/)
-- Issue with select element and required attribute solved with help from [Jibin and Adhan Timothy Younes (users on Stack Overflow)](https://stackoverflow.com/questions/44322824/select-required-not-working)
-- Issue where footer would appear above the bottom on the page on the thank you page solved with help from [CSS Tricks](https://css-tricks.com/couple-takes-sticky-footer/)
-- Issues where transparent overlay of header would show elements with 'position: relative' attribute through when scrolling, even after  adding sticky opaque backing div solved by removing backing div from section that was not sticky and increasing z-index value.
-- Issue with summary elements showing a single-pixel-wide line of white between the background colour and the border solved by applying separate styling to '[open]' and closed details elements
+- Issue where screen would inch to left slightly when displayed message at bottom of screen, solved with help from by adding `overflow: hidden;` to budy during function and removing once element removed.
+- Issue with dividing width of score bar and multiplying by points to increment progress bar not calling a level-up solved by reducing precision of condition.
+- Issue with level 5 progress bar extending past the container solved by applying `overflow: hidden;` to container.
+- Originally tried to call multiple messages to display but this caused a bug as it meant multiples of the same ID. Fixed by removing old message once finished with.
+- Error was displayed in console when displaying the rules message type. This did not affect the message being displayed. Solved by altering function to display message by removing code to populate butttons if rules message called.
+- Bug where upgraded backgrouns colour was not taking up whole screen when applied solved by adding JavaScript to add in-line style to overide any other styles.
+- Issue with trying to display the chosen weapon icon by using code to map the index in an array solved with code from [Borislav Hadzhiev](https://bobbyhadz.com/blog/javascript-array-find-index-of-object-by-property)
 
 ### Unresolved Bugs
-- Map iframes are not interactive within the deployed site, but do open up a larger map in a new tab when clicked and therefore still useful to the user. Tried to see if this was an issue with Github pages as the maps are interactive in the testing site but unable to find an answer.
-- Phone simulation on [Am I Responsive?](https://ui.dev/amiresponsive) shows gradient fade div over hero image in an undesirable position. This is not the case when simulating on Devtools and I have been unable to emulate it, and have therefore struggled to resolve it at this stage
-- Number input element in sign-up form sometimes sticks as focused, even when another input it clicked, leaving the element with a white background. I have tried researching ways to fix this but this does not seem to be a problem that other coders often face/notice so have been unable to find guidance on how to prevent it.
+- Scrolling on mobile device very briefly displays white background at the bottom of the page - have tried a few combinations of background properties but none have fixed this. It is only brief and does not affext user experience.
+- It's possible for the player to click the game buttons too quickly and cause an error whereby the leveling-up message appears twice. This is caused by the buttons not diabling quick enough when level increments.
+
