@@ -32,60 +32,38 @@
 #### index.html with welcome message
 - Desktop
 
-![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-welcome.png)
+![Screenshot of Lighthouse score for standard display of index.html on desktop](/assets/images/index-standard-desktop.png)
 
 - Mobile
 
-![Screenshot of Lighthouse score for index.html on mobile](/assets/images/index-mobile.png)
-
-#### index.html with settings menu
-- Desktop
-
-![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
-
-- Mobile
-
-#### index.html with how to play
-- Desktop
-
-![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
-
-- Mobile
-
-#### index.html with level-up
-- Desktop
-
-![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
-
-- Mobile
-
-#### index.html with completion message
-- Desktop
-
-![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
-
-- Mobile
+![Screenshot of Lighthouse score for standard display of index.html on mobile](/assets/images/index-standard-mobile.png)
 
 #### index.html with dark theme
 - Desktop
 
-![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
+![Screenshot of Lighthouse score for dark display of index.html on desktop](/assets/images/index-dark-desktop.png)
 
 - Mobile
+
+![Screenshot of Lighthouse score for dark display of index.html on mobile](/assets/images/index-dark-mobile.png)
 
 #### index.html with rainbow theme
 - Desktop
 
-![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
+![Screenshot of Lighthouse score for rainbow display of index.html on desktop](/assets/images/index-rainbow-desktop.png)
 
 - Mobile
+
+![Screenshot of Lighthouse score for rainbow display of index.html on mobile](/assets/images/index-rainbow-mobile.png)
 
 #### index.html with pink theme
 - Desktop
 
-![Screenshot of Lighthouse score for index.html on desktop](/assets/images/index-desktop.png)
+![Screenshot of Lighthouse score for pink display of index.html on desktop](/assets/images/index-pink-desktop.png)
 
 - Mobile
+
+![Screenshot of Lighthouse score for pink display of index.html on mobile](/assets/images/index-pink-mobile.png)
 
 ---
 ## Manual testing
