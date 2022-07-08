@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let navIcons = document.getElementById('navigation').children;
 
     for (let navIcon of navIcons) {
-        let messageContent = navIcon.children[0].getAttribute('aria-label');
+        let messageContent = navIcon.children[0].getAttribute('destination');
         navIcon.addEventListener('click', function () {
             displayMessage(messageContent);
         })

@@ -19,17 +19,16 @@
 </head>
 
 <!-- Class on body tag interacts with CSS and JS to set the background colour -->
-
 <body class="blue-theme" style="background-attachment: fixed;">
     <h1>Ultimate RPS</h1>
 
     <!-- Main navigation links - links do not lead anywhere, but display content as pop-up messages -->
     <ul id="navigation">
         <li>
-            <a class="icons open-settings" aria-label="settings"><i class="fa-solid fa-gear"></i></a>
+            <a class="icons open-settings" aria-label="Opens settings menu to toggle upgrades" destination="settings"><i class="fa-solid fa-gear"></i></a>
         </li>
         <li>
-            <a class="icons open-rules" aria-label="rules"><i class="fa-solid fa-book"></i></a>
+            <a class="icons open-rules" aria-label="Opens game rules and how to play" destination="rules"><i class="fa-solid fa-book"></i></a>
         </li>
     </ul>
 
@@ -38,27 +37,27 @@
         <a class="icons close-window"><i class="fa-solid fa-xmark"></i></a>
         <h2>Toggle Upgrades:</h2>
         <div class="settings-buttons upgrades">
-            <button class="upgrade-toggle theme-upgrade">
+            <button class="upgrade-toggle theme-upgrade" aria-label="Sets background colour to blue theme">
                 <p>Blue Theme</p>
                 <div class="upgrade-display blue-theme">
                 </div>
             </button>
-            <button class="upgrade-toggle locked theme-upgrade">
+            <button class="upgrade-toggle locked theme-upgrade" aria-label="Sets background colour to pink theme">
                 <p>Pink Theme</p>
                 <div class="upgrade-display pink-theme">
                 </div>
             </button>
-            <button class="upgrade-toggle locked theme-upgrade">
+            <button class="upgrade-toggle locked theme-upgrade" aria-label="Sets background colour to dark blue theme">
                 <p>Dark Theme</p>
                 <div class="upgrade-display dark-theme">
                 </div>
             </button>
-            <button class="upgrade-toggle locked theme-upgrade">
+            <button class="upgrade-toggle locked theme-upgrade" aria-label="Sets background colour to rainbow theme">
                 <p>Rainbow Theme</p>
                 <div class="upgrade-display rainbow-theme">
                 </div>
             </button>
-            <button class="upgrade-toggle locked game-upgrade">
+            <button class="upgrade-toggle locked game-upgrade" aria-label="Adds or removes Lizard and Spock weapon choices">
                 <p>Lizard & Spock</p>
                 <div class="upgrade-display extra-weapons">
                     <i class="fa-solid fa-hand-lizard"></i>
@@ -74,14 +73,14 @@
 
         <!-- Displays computer choice -->
         <div class="comp-board">
-            <div id="comp-display" class="display box"></div>
+            <div id="comp-display" class="display box" aria-label="Computer's weapon choice displayed here as icon"></div>
         </div>
 
         <p id="versus">Vs.</p>
 
         <!-- Displays user choice -->
         <div class="user-board">
-            <div id="user-display" class="display box"></div>
+            <div id="user-display" class="display box" aria-label="User's weapon choice displayed here as icon"></div>
 
             <!-- Buttons to select weapon and begin game -->
             <div id="weapon-select">
