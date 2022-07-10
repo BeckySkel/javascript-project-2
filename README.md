@@ -261,7 +261,7 @@
      - [](https://www.twoplayergames.org/game/rock-paper-scissors)
 - Issue with trying to display the chosen weapon icon by using code to map the index in an array solved with code from [Borislav Hadzhiev](https://bobbyhadz.com/blog/javascript-array-find-index-of-object-by-property)
 - CSS Code for colourful 3D heading from [Mandy Michael](code for 3D effect from https://codepen.io/mandymichael/pen/VprZaq)
-- Code for preloading style.css suggested by [Chrome Devtools](https://developer.chrome.com/docs/devtools/) Lighthouse feature
+- Code for preloading and preconnecting links suggested by [Chrome Devtools](https://developer.chrome.com/docs/devtools/) Lighthouse feature
 - 3D buttons inspired by [Arron Hunt](https://codepen.io/arronhunt/pen/WWOOeO) but heavily edited by myself to suit my design
 
 ### Media

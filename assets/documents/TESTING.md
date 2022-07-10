@@ -10,6 +10,9 @@
 #### index.html
 ![Feedback from run through the W3 HTML validator for index.html](/assets/images/index-w3c-result.png)
 
+#### 404.html
+![Feedback from run through the W3 HTML validator for 404.html](/assets/images/index-w3c-result.png)
+
 ###  W3C CSS Validator
 
 #### style.css
