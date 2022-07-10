@@ -1,7 +1,7 @@
 // Function to wait for DOM to load then get button elements and add event listeners inspired by the CI Love Maths Walkthrough Project
 document.addEventListener('DOMContentLoaded', function () {
     // -- add event listeners to game buttons to preview selection and begin game
-    let buttons = document.getElementsByTagName("button");
+    let buttons = document.getElementById('weapon-select').children;
 
     for (let button of buttons) {
         button.addEventListener('mouseenter', function () {
