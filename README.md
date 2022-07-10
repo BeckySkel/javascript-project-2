@@ -84,6 +84,7 @@
 ### Wireframes
 - After looking at common designs and features and deciding what I would like to include, I mapped out the intended features of the website using [Balsamiq](https://balsamiq.com/) to create wireframes of each page view.
 - [View the wireframes here](assets/documents/wireframes.pdf)
+- The key differences between planning and the final product are presentation of the settings menu & game rules. Originally I had planned to display these through an extending footer which would slide up from the bottom when one of the links were clicked and shrunk back down once no longer in use. This developed into a message band that slides from top to bottom instead.
 
 ### Information architecture
 - Ultimate RPs is a single-page website which relies on JavaScript to manipulate the DOM and display different areas of the site in pop-up messages.
@@ -184,7 +185,13 @@
 ![Screenshot of the rainbow theme](/assets/images/rainbow.png)
 ##### Dark Theme
 - The dark theme will be good for those who are playing in a dark room and find the lighter colours too much for their eyes. It also ups the contrast between elements if the player is having trouble viewing the screen in very bright light. The text on the screen is changed from grey to white to provide sufficient contrast. The gradient is similar to that of the blue and pink themes. 
+
 ![Screenshot of the dark theme](/assets/images/dark.png)
+#### 404 Page
+- A custom 404 page has been added for broken links and navigation back to the main page
+
+![Screenshot of the 404 page on desktop](/assets/images/404-desktop.png)
+![Screenshot of the 404 page on mobile](/assets/images/404-mobile.png)
 
 ### Technologies used
 
