@@ -35,7 +35,7 @@ h1 {
 }
 
 #error {
-    margin: 20vh auto;
+    margin: 20vh auto 15vh;
 }
 
 
@@ -81,6 +81,9 @@ h1 {
     padding: 0.2rem !important;
 }
 
+#return-message>* {
+    padding: 1rem;
+}
 
 /* -- Message Display */
 
@@ -169,7 +172,7 @@ h1 {
     font-size: 2.8rem;
 }
 
- .upgrade-name {
+.upgrade-name {
     padding-top: 0.2rem;
     display: inline-block;
 }
@@ -397,7 +400,7 @@ button:disabled:active {
     .icons {
         font-size: 2rem;
     }
-    
+
     .icons:active {
         font-size: 2rem;
     }
@@ -508,7 +511,7 @@ button:disabled:active {
         padding: 0.2rem;
     }
 
-        
+
     .icons:active {
         font-size: 1.5rem;
     }
@@ -683,7 +686,7 @@ button:disabled:active {
 }
 
 /* --- For extra small screens, 340px and below  */
-@media screen and ( max-width: 340px) {
+@media screen and (max-width: 340px) {
     h1 {
         font-size: 2rem;
     }
