@@ -92,8 +92,9 @@
 - Error was displayed in console when displaying the rules message type. This did not affect the message being displayed. Solved by altering function to display message by removing code to populate butttons if rules message called.
 - Bug where upgraded backgrouns colour was not taking up whole screen when applied solved by adding JavaScript to add in-line style to overide any other styles.
 - Issue with trying to display the chosen weapon icon by using code to map the index in an array solved with code from [Borislav Hadzhiev](https://bobbyhadz.com/blog/javascript-array-find-index-of-object-by-property)
+- Issue where player is able to display multiple level-up messages by raidly clicking game buttons, thus causing mutliple elements of the same ID and causing the the game to break. Solved by calling the disableBackground function immediately after level-up is established, before the message is displayed.
 
 ### Unresolved Bugs
 - Scrolling on mobile device very briefly displays white background at the bottom of the page - have tried a few combinations of background properties but none have fixed this. It is only brief and does not affext user experience.
-- It's possible for the player to click the game buttons too quickly and cause an error whereby the leveling-up message appears twice. This is caused by the buttons not diabling quick enough when level increments.
+
 

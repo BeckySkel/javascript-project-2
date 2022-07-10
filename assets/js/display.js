@@ -252,6 +252,9 @@ function activateUpgrade(upgradeType, upgradeIdentifier) {
                 document.body.style.color = '#fff';
             } else {
                 document.body.style.color = '#3c3c3c';
+                if (upgradeIdentifier === 'rainbow-theme') {
+                    document.getElementById('scoreboard').style.background = 'rgba(255, 255, 255, 0.5)';                   
+                }
             }
         }
     } else if (upgradeType === 'game-upgrade') {
