@@ -183,7 +183,7 @@
 
 ![Screenshot of the rainbow theme](/assets/images/rainbow.png)
 ##### Dark Theme
-- The dark theme will be good for those who are playing in a dark room and find the lighter colours too much for their eyes. It also ups the contrast between elements if the player is having trouble viewing the screen in very bright light. The text on the screen is changed from grey to white to provide sufficient contrast. 
+- The dark theme will be good for those who are playing in a dark room and find the lighter colours too much for their eyes. It also ups the contrast between elements if the player is having trouble viewing the screen in very bright light. The text on the screen is changed from grey to white to provide sufficient contrast. The gradient is similar to that of the blue and pink themes. 
 ![Screenshot of the dark theme](/assets/images/dark.png)
 
 ### Technologies used

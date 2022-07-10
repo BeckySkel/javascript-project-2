@@ -34,6 +34,10 @@ h1 {
     color: #B2FF91;
 }
 
+#error {
+    margin: 20vh auto;
+}
+
 
 /* -- Navigation Icons */
 
@@ -275,7 +279,6 @@ button:disabled:active {
     width: 600px;
     margin: 2rem auto;
     padding: 0 1rem;
-    /* background: rgba(255, 255, 255, 0.5); */
 }
 
 #outcome {
@@ -477,7 +480,6 @@ button:disabled:active {
 
     #outcome {
         font-size: 1.2rem;
-        /* padding-top: 1rem; */
     }
 
     #scoreboard {
@@ -590,7 +592,6 @@ button:disabled:active {
 
     #navigation {
         left: 0;
-        /* top: 0.6rem; */
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -664,7 +665,6 @@ button:disabled:active {
     }
 
     #outcome {
-        /* padding-top: 1rem; */
         font-size: 1rem;
     }
 
