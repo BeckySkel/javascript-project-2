@@ -70,7 +70,7 @@ function displayMessage(messageType) {
     //  -- create and display message container
     let messageContainer = document.createElement('div');
     messageContainer.id = 'message-container';
-    messageContainer.style.top = '30vh';
+    // messageContainer.style.top = '30vh';
     messageContainer.style.animation = 'slide-in 1s ease-out';
     document.body.appendChild(messageContainer);
 
@@ -312,7 +312,7 @@ function addNewWeapon(weaponType) {
 function closeMessage() {
     // -- hide and remove message window
     let messageContainer = document.getElementById('message-container');
-    messageContainer.style.top = '30vh';
+    // messageContainer.style.top = '30vh';
     messageContainer.style.animation = 'slide-out 0.8s linear';
     document.body.style.overflow = 'hidden';
     setTimeout(function () {

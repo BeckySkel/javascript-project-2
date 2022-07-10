@@ -96,7 +96,7 @@ h1 {
 }
 
 #message-container {
-    height: 40%;
+    height: 40vh;
     position: absolute;
     width: 100%;
     background: #B8FFDE;
@@ -109,6 +109,7 @@ h1 {
     align-items: center;
     justify-content: center;
     color: #3c3c3c;
+    top: 30vh;
 }
 
 #message-container>* {
