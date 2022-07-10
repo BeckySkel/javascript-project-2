@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let button of buttons) {
         button.addEventListener('mouseenter', function () {
             let weapon = this.getAttribute("data-type");
-          	preview(weapon);
+            preview(weapon);
         });
         button.addEventListener('mouseleave', function () {
             stopPreview();
@@ -252,12 +252,12 @@ function activateUpgrade(upgradeType, upgradeIdentifier) {
                 document.body.style.color = '#fff';
             } else {
                 document.body.style.color = '#3c3c3c';
-                let scoreboard = document.getElementById('scoreboard');
-                if (upgradeIdentifier === 'rainbow-theme') {
-                    scoreboard.style.background = 'rgba(255, 255, 255, 0.5)';                   
-                } else {
-                    scoreboard.style.background = 'none';  
-                }
+            }
+            let scoreboard = document.getElementById('scoreboard');
+            if (upgradeIdentifier === 'rainbow-theme') {
+                scoreboard.style.background = 'rgba(255, 255, 255, 0.5)';
+            } else {
+                scoreboard.style.background = 'none';
             }
         }
     } else if (upgradeType === 'game-upgrade') {

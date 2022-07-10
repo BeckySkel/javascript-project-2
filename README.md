@@ -97,7 +97,7 @@
 #### Header
 - 
 ![Screenshot of the header on desktop](/assets/images/header-desktop.png)
-![Screenshot of the header on mobile](assets/images/header-mobile.png)
+![Screenshot of the header on mobile](/assets/images/header-mobile.png)
 ##### Logo
 - 
 - 
@@ -110,7 +110,7 @@
 #### Game Board
 - 
 ![Screenshot of the game board on desktop](/assets/images/gameboard-desktop.png)
-![Screenshot of the game board on mobile](assets/images/gameboard-mobile.png)
+![Screenshot of the game board on mobile](/assets/images/gameboard-mobile.png)
 ##### Display Boxes
 - 
 - 
@@ -119,7 +119,7 @@
 - 
 - 
 ![Screenshot of the weapon choices with 3 options](/assets/images/weapons-rps.png)
-![Screenshot of the weapon choices with 5 options](assets/images/weapons-rpsls.png)
+![Screenshot of the weapon choices with 5 options](/assets/images/weapons-rpsls.png)
 ##### Scoreboard
 - 
 - 
@@ -128,8 +128,8 @@
 #### Message Container
 - 
 - 
-![Screenshot of the message container on desktop](assets/images/message-desktop.png)
-![Screenshot of the message container on mobile](assets/images/message-mobile.png)
+![Screenshot of the message container on desktop](/assets/images/message-desktop.png)
+![Screenshot of the message container on mobile](/assets/images/message-mobile.png)
 ##### Welcome Message
 - 
 - 
@@ -149,22 +149,22 @@
 ##### Completion Message
 - 
 - 
-![Screenshot of the winner message](assets/images/winner.png)
+![Screenshot of the winner message](/assets/images/winner.png)
 
 #### Backgrounds
 - 
 ##### Blue Theme
 - 
-![Screenshot of the blue theme](assets/images/blue.png)
+![Screenshot of the blue theme](/assets/images/blue.png)
 ##### Pink Theme
 - 
-![Screenshot of the pink theme](assets/images/pink.png)
+![Screenshot of the pink theme](/assets/images/pink.png)
 ##### Rainbow Theme
 - 
-![Screenshot of the rainbow theme](assets/images/rainbow.png)
+![Screenshot of the rainbow theme](/assets/images/rainbow.png)
 ##### Dark Theme
 - 
-![Screenshot of the dark theme](assets/images/dark.png)
+![Screenshot of the dark theme](/assets/images/dark.png)
 
 ### Technologies used
 
