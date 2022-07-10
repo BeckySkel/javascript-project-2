@@ -96,35 +96,34 @@
 
 #### Header
 - 
-![Screenshot of the header on desktop](assets/images/header-desktop.png)
+![Screenshot of the header on desktop](/assets/images/header-desktop.png)
 ![Screenshot of the header on mobile](assets/images/header-mobile.png)
 ##### Logo
 - 
 - 
-![Screenshot of the logo](assets/images/logo.png)
+![Screenshot of the logo](/assets/images/logo.png)
 ##### Navigation
 - 
 - 
-![Screenshot of the navigation bar](assets/images/navigation.png)
+![Screenshot of the navigation bar](/assets/images/navigation.png)
 
 #### Game Board
 - 
-![Screenshot of the game board on desktop](assets/images/gameboard-desktop.png)
+![Screenshot of the game board on desktop](/assets/images/gameboard-desktop.png)
 ![Screenshot of the game board on mobile](assets/images/gameboard-mobile.png)
 ##### Display Boxes
 - 
 - 
-![Screenshot of the display boxes](assets/images/navigation.png)
+![Screenshot of the display boxes](/assets/images/display-boxes.png)
 ##### Weapon Select
 - 
 - 
-![Screenshot of the weapon choices with 3 options](assets/images/weapons-rps.png)
+![Screenshot of the weapon choices with 3 options](/assets/images/weapons-rps.png)
 ![Screenshot of the weapon choices with 5 options](assets/images/weapons-rpsls.png)
 ##### Scoreboard
 - 
 - 
-![Screenshot of the scoreboard on desktop](assets/images/scoreboard-desktop.png)
-![Screenshot of the scoreboard on mobile](assets/images/scoreboard-mobile.png)
+![Screenshot of the scoreboard on desktop](/assets/images/scoreboard.png)
 
 #### Message Container
 - 
