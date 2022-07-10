@@ -137,6 +137,7 @@ function incrementScoreBar(points) {
     // -- level up once progress bar is full
     // -- slight allowance for rounded numbers within progress calculation
     if (progressBar.offsetWidth >= scoreBarWidth - 2) {
+        disableBackground();
         setTimeout(function () {
             ++level;
           if (level === 6) {
