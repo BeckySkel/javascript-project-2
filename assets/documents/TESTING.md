@@ -10,9 +10,6 @@
 #### index.html
 ![Feedback from run through the W3 HTML validator for index.html](/assets/images/index-w3c-result.png)
 
-#### 404.html
-![Feedback from run through the W3 HTML validator for 404.html](/assets/images/index-w3c-result.png)
-
 ###  W3C CSS Validator
 
 #### style.css
@@ -50,6 +47,9 @@
 - All game levels tested manually on **8/7/22** and found to be working as intended
 - All upgrade unlocks tested manually on **8/7/22** and found to be working as intended
 - All uprgade toggles tested manually on **8/7/22** and found to be working as intended
+
+### 404.html
+- - All navigation buttons tested manually **10/7/22** and found to be working as intended
 
 ---
 ## Different browsers
