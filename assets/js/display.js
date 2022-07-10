@@ -70,7 +70,6 @@ function displayMessage(messageType) {
     //  -- create and display message container
     let messageContainer = document.createElement('div');
     messageContainer.id = 'message-container';
-    // messageContainer.style.top = '30vh';
     messageContainer.style.animation = 'slide-in 1s ease-out';
     document.body.appendChild(messageContainer);
 
@@ -87,9 +86,14 @@ function displayMessage(messageType) {
         </div>
         `;
     } else if (messageType === 'winner') {
+        let wins = document.getElementById('wins').innerHTML;
+        let loses = document.getElementById('loses').innerHTML;
+        let draws = document.getElementById('draws').innerHTML;
+        let totalTurns = Number(wins) + Number(loses) + Number(draws);
+        console.log(totalTurns);
         messageContainer.innerHTML = `
         <h2>You Won!</h2>
-        <p>Congratulations! You've beaten all levels and completed the game.</p>
+        <p>Congratulations! You've beaten all levels and completed the game in <strong>${totalTurns}</strong> turns.</p> 
         <p>Why not restart and try to win in fewer turns?</p>
         <div id="message-buttons">
         <button id="restart">Restart!</button>
@@ -199,8 +203,8 @@ function populateButtons(messageType) {
  * retrieved when player levels-up
  */
 function chooseUpgrade() {
-    let lockedUpgrades = document.getElementsByClassName('locked'); // locked upgrade buttons
-    let upgradeOptions = document.getElementsByClassName('upgrade-option'); // 3 empty upgade-selection buttons
+    let lockedUpgrades = document.getElementsByClassName('locked'); // -- locked upgrade buttons
+    let upgradeOptions = document.getElementsByClassName('upgrade-option'); // -- 3 empty upgade-selection buttons
     let upgradeArray = [];
 
     // -- check if enough locked upgrades remain to fill all option buttons
@@ -312,7 +316,6 @@ function addNewWeapon(weaponType) {
 function closeMessage() {
     // -- hide and remove message window
     let messageContainer = document.getElementById('message-container');
-    // messageContainer.style.top = '30vh';
     messageContainer.style.animation = 'slide-out 0.8s linear';
     document.body.style.overflow = 'hidden';
     setTimeout(function () {
