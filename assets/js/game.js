@@ -127,7 +127,6 @@ function incrementScoreBar(points) {
     // -- read current level and width of score-bar from DOM
     let level = Number(document.getElementById('level').innerHTML);
     let requiredWins = Number(level) + 2;
-    // let requiredWins = Number(level);
     let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
     let progress = scoreBarWidth / requiredWins;
 
@@ -168,7 +167,6 @@ function displayScores(outcome) {
     // -- calculate points needed to progress to next level
     let level = Number(document.getElementById('level').innerHTML);
     let requiredWins = Number(level) + 2;
-    // let requiredWins = Number(level);
     let scoreBarWidth = document.getElementById('score-bar').offsetWidth;
     let progress = scoreBarWidth / requiredWins;
     let points = document.getElementById('progress-bar').offsetWidth / Number(progress);

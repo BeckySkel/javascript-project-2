@@ -165,7 +165,8 @@
 
 ![Screenshot of the level-up message](/assets/images/level-up.png)
 ##### Completion Message
-- Once the player has completed the game and beat all 5 levels, one final message is displayed to congratulate them and ask if they would like to restart and try to beat their score. this message can only be removed by clicking restart. 
+- Once the player has completed the game and beat all 5 levels, one final message is displayed to congratulate them and ask if they would like to restart and try to beat their score. This message can only be removed by clicking restart. 
+- The total number of turns it took for the player to complete the game is repoorted back to them so they have a goal to beat next time they play.
 
 ![Screenshot of the winner message](/assets/images/winner.png)
 
